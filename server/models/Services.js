@@ -28,6 +28,6 @@ const serviceSchema = new Schema({
   },
 });
 
-const Services = model('Service', serviceSchema);
+const Services = model('Services', serviceSchema);
 
 module.exports = Services;
