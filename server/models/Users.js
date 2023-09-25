@@ -21,6 +21,7 @@ const usersSchema = new Schema({
     type: String,
     required: true,
   },
+  appointment: [Appointment]
 });
 
 const Users = model('Users', usersSchema);
