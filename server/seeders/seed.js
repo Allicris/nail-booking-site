@@ -8,8 +8,7 @@ db.once('open', async () => {
     // Clean the 'Users' collection
     await cleanDB('Users', 'users');
 
-    // Create users using the 'Users' model and the data from usersSeeds
-    await Users.create(usersSeeds);
+  await Users.create(usersSeeds);
 
     console.log('All done!');
   } catch (error) {

@@ -21,7 +21,12 @@ const usersSchema = new Schema({
     type: String,
     required: true,
   },
-  appointment: [Appointment]
+  appointment: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Appointment'
+    }
+  ]
 });
 
 const Users = model('Users', usersSchema);
