@@ -6,6 +6,10 @@ const appointmentSchema = new Schema({
     type: Date,
     required: true,
   },
+  appointmentId: {
+    type: String,
+    required: true,
+  },
   availableTimes: [
     {
       Nine: {

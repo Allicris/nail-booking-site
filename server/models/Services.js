@@ -19,9 +19,9 @@ const serviceSchema = new Schema({
   image: {
     type: String,
   },
-  serviceTime: {
-    type: Number,
-  },
+  // serviceTime: {
+  //   type: Number,
+  // },
   description: {
     type: String,
     required: true,
