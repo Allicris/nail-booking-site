@@ -6,32 +6,13 @@ const appointmentSchema = new Schema({
     type: Date,
     required: true,
   },
-  appointmentId: {
+  appointmentTime:{
     type: String,
     required: true,
   },
-  availableTimes: [
-    {
-      Nine: {
-        type: Boolean,
-        required: true,
-      },
-      Eleven: {
-        type: Boolean,
-        required: true,
-      },
-      One: {
-        type: Boolean,
-        required: true,
-      },
-      Three: {
-        type: Boolean,
-        required: true,
-      },
     services: [ Services ]  
-    },
-  ],
-});
+   },
+);
 
 const Appointment = model('Appointment', appointmentSchema);
 
