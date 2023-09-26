@@ -1,15 +1,15 @@
 [
     {
       "name": "Anne Marousya Kernighan",
-      "appointment": ["filling", "mani", "pedi"]
+      "email": "anneemail@gmail.com"
     },
     {
       "name": "Max Kanat-Alexander",
-      "appointment": ["french", "acrylic", "freestyle design"]
+      "email": "maxemail@gmail.com"
     },
     {
       "name": "Lissa",
-      "appointment": ["cute manicure", "extra blink", "pedicure"]
+      "email": "lissaLisza@gmail.com"
     }
     
   ]
