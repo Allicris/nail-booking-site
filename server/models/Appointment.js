@@ -1,5 +1,5 @@
 const { Schema, model } = require('mongoose');
-
+const Services = require('./Services');
 
 const appointmentSchema = new Schema({
   appointmentDate: {
@@ -10,7 +10,12 @@ const appointmentSchema = new Schema({
     type: String,
     required: true,
   },
-    services: [ Services ]  
+    services: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'Services'
+      }
+    ],
    },
 );
 
