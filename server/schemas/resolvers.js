@@ -1,4 +1,4 @@
-const { Users } = require('../models');
+const  { Users, Appointment } = require('../models');
 
 const resolvers = {
   Query: {
@@ -25,30 +25,67 @@ const resolvers = {
   },
 
   Mutation: {
-    addUser: async (parent, { name }) => {
+    addUser: async (parent, { name, email, password }) => {
       try {
-        const newUser = await Users.create({ name }); 
-        return newUser;
+        const newUser = await Users.create({ name, email, password }); 
+        const token = signToken(newUser)
+        return { newUser, token};
       } catch (error) {
         throw new Error('Failed to create user');
       }
     },
 
-    appointmentOfUser: async (parent, { userId, appointment }) => {
-      try {
-        const updatedUser = await Users.findOneAndUpdate(
-          { _id: userId },
-          { $addToSet: { appointment: appointment } },
-          { new: true, runValidators: true }
-        );
-        if (!updatedUser) {
-          throw new Error('User not found');
-        }
-        return updatedUser;
-      } catch (error) {
-        throw new Error('Failed to add appointment to user');
+    login: async (parent, { email, password }) => {
+      const user = await Users.findOne({ email });
+
+      if (!user) {
+        throw AuthenticationError;
       }
+
+      const correctPw = await profile.isCorrectPassword(password);
+
+      if (!correctPw) {
+        throw AuthenticationError;
+      }
+
+      const token = signToken(user);
+      return { token, user };
     },
+
+    saveAppointment: async (parent, { appointmentDate, appointmentTime }, context) => {
+      if (context.user) {
+        const appointment = await Appointment.create({
+          appointmentDate,
+          appointmentTime,
+          services,
+        });
+        
+        await Users.findOneAndUpdate(
+          {_id: context.user_id },
+          { $addToSet: {appointment: appointment._id}}
+          );
+
+        return appointment;  
+      }
+      throw AuthenicationError;
+      ('you need to be logged in!');
+    },
+
+    // appointmentOfUser: async (parent, { userId, appointment }) => {
+    //   try {
+    //     const updatedUser = await Users.findOneAndUpdate(
+    //       { _id: userId },
+    //       { $addToSet: { appointment: appointment } },
+    //       { new: true, runValidators: true }
+    //     );
+    //     if (!updatedUser) {
+    //       throw new Error('User not found');
+    //     }
+    //     return updatedUser;
+    //   } catch (error) {
+    //     throw new Error('Failed to add appointment to user');
+    //   }
+    // },
 
     removeUser: async (parent, { userId }) => {
       try {
