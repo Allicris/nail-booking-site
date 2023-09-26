@@ -9,7 +9,7 @@ module.exports = async (modelName, collectionName) => {
       }).toArray();
 
       if (modelExists.length) {
-        await db.dropCollection(collectionName);
+        await db.db.collection(collectionName).drop(); // Specify the database
       }
     } else {
       throw new Error('Model not found'); // Provide an error message for an unsupported model

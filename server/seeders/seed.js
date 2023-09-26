@@ -1,13 +1,20 @@
 const db = require('../config/connection');
-const { Services, Users, Appointment  } = require('../models');
-const usersSeeds = require('./usersSeeds.json');
-const cleanDB = require('./cleanDB');
+const { Users } = require('../models'); 
+const usersSeeds = require('./usersSeeds.json'); 
+const cleanDB = require('./cleanDB'); 
 
 db.once('open', async () => {
-  await cleanDB('Users', 'users');
+  try {
+    // Clean the 'Users' collection
+    await cleanDB('Users', 'users');
 
-  await Users.create(tusersSeeds);
+    // Create users using the 'Users' model and the data from usersSeeds
+    await Users.create(usersSeeds);
 
-  console.log('all done!');
-  process.exit(0);
+    console.log('All done!');
+  } catch (error) {
+    console.error('Error:', error);
+  } finally {
+    process.exit(0);
+  }
 });
