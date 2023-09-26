@@ -10,8 +10,9 @@ type Users {
 }
 
 type Appointment {
+  _id:ID
   appointmentDate: Date!
-  availableTimes: 
+  appointmentTime: String! 
   services: [Services]
 }
 
