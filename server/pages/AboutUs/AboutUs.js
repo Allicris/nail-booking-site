@@ -14,7 +14,7 @@ const About = () => {
                             <SectionHeading
                                headingLeft="About Us"
                                headingRight=" Story "
-                               subheading="Welcome to Thai She Beauty saloon"
+                               subheading="Welcome"
 
                             />
                         </div>
