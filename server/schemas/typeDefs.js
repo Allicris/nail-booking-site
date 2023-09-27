@@ -1,45 +1,59 @@
 // const { gql } = require('apollo-server-express');
 
 const typeDefs = `
-type Users {
-  _id: ID
-  name: String!
-  phone: String
-  email: String!
-  appointment: [Appointment]
-}
+  type User {
+    _id: ID
+    name: String!
+    phone: String
+    email: String!
+    appointments: [Appointment]
+  }
 
-type Appointment {
-  _id:ID
-  appointmentDate: Date!
-  appointmentTime: String! 
-  services: [Services]
-}
+  type Appointment {
+    _id: ID
+    appointmentDate: String!
+    appointmentTime: String!
+    services: [Service]
+  }
 
-type Services {
-  name: String!
-  price: Number!
-  serviceId: String!
-  image: String
-  description: String!
-}
+  type Service {
+    name: String!
+    price: Float!
+    serviceId: String!
+    image: String
+    description: String!
+  }
 
-type Auth {
-  token: ID!
-  user: Users
-}
+  type Auth {
+    token: ID!
+    user: User
+  }
 
-type Query {
-  me: Users
-  users: [Users]
-}
+  input AppointmentInput {
+    appointmentDate: String!
+    appointmentTime: String!
+    services: [ServiceInput]
+  }
 
-type Mutation {
-  login(email:String!, password: String!): Auth
-  addUser(email: String!, name: String!, password: String!): Auth
-  saveAppointment(appointmentData: appointmentInput!): User
-  removeAppointment(appointmentId: String!): User
-}
-`
+  input ServiceInput {
+    name: String!
+    price: Float!
+    serviceId: String!
+    image: String
+    description: String!
+  }
+
+  type Query {
+    me: User
+    users: [User]
+  }
+
+  type Mutation {
+    login(email: String!, password: String!): Auth
+    addUser(email: String!, name: String!, password: String!): Auth
+    saveAppointment(appointmentData: AppointmentInput!): User
+    removeAppointment(appointmentId: String!): User
+  }
+`;
 
 module.exports = typeDefs;
