@@ -1,15 +1,18 @@
 [
     {
       "name": "manicure",
-      "description": "classic manicure, no polish"
+      "description": "classic manicure, no polish",
+      "serviceId": "123"
     },
     {
       "name": "french manicure",
-      "description": "some description"
+      "description": "some description",
+      "serviceId": "456"
     },
     {
       "name": "Acrylic mani",
-      "description": "some description"
+      "description": "some description",
+      "serviceId": "789"
     }
   ]
   
