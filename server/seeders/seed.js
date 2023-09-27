@@ -12,6 +12,7 @@ db.once('open', async () => {
 
   await Users.create(usersSeeds);
   await Services.create(serviceSeeds);
+  //loop through seeds and pull [0] and assign to the services in the appointmentseed.
   await Appointment.create(appointmentSeeds);
 
     console.log('All done!');

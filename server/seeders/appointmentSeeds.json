@@ -4,9 +4,7 @@
         "time": "3 pm",
         "service": [
             {
-                "name": "manicure",
-                "description": "classic manicure, no polish",
-                "serviceId": "123"
+                "_Id": "651383045bed18e3ebf57532"
             }
         ]
     },
@@ -15,9 +13,7 @@
         "time": "10 am",
         "service": [
             {
-                "name": "french manicure",
-                "description": "some description",
-                "serviceId": "456"
+                "_Id": "651383045bed18e3ebf57532"
             }
         ]
     },
@@ -26,9 +22,7 @@
         "time": "12 pm",
         "service": [
             {
-                "name": "Acrylic mani",
-                "description": "some description",
-                "serviceId": "789"
+                "_Id": "651383045bed18e3ebf57532"
               }
         ]
     }
