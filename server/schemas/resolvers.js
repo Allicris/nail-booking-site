@@ -1,4 +1,4 @@
-const { AuthenticationError } = require('apollo-server-express'); // Import AuthenticationError
+// const { AuthenticationError } = require('apollo-server-express'); // Import AuthenticationError
 const { Users, Appointment } = require('../models');
 
 const resolvers = {
