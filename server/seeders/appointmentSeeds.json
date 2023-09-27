@@ -1,0 +1,35 @@
+[
+    {
+        "date": "10/01/23",
+        "time": "3 pm",
+        "service": [
+            {
+                "name": "manicure",
+                "description": "classic manicure, no polish",
+                "serviceId": "123"
+            }
+        ]
+    },
+    {
+        "date": "10/02/23",
+        "time": "10 am",
+        "service": [
+            {
+                "name": "french manicure",
+                "description": "some description",
+                "serviceId": "456"
+            }
+        ]
+    },
+    {
+        "date": "10/02/23",
+        "time": "12 pm",
+        "service": [
+            {
+                "name": "Acrylic mani",
+                "description": "some description",
+                "serviceId": "789"
+              }
+        ]
+    }
+]
