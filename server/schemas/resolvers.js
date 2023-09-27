@@ -12,7 +12,7 @@ const resolvers = {
       }
     },
 
-    user: async (parent, { userId }) => {
+    users: async (parent, { userId }) => {
       try {
         const user = await Users.findOne({ _id: userId });
         if (!user) {
@@ -71,17 +71,17 @@ const resolvers = {
       throw new AuthenticationError('You need to be logged in!'); // Use AuthenticationError
     },
 
-    removeUser: async (parent, { userId }) => {
-      try {
-        const deletedUser = await Users.findOneAndDelete({ _id: userId });
-        if (!deletedUser) {
-          throw new Error('User not found');
-        }
-        return deletedUser;
-      } catch (error) {
-        throw new Error('Failed to delete user');
-      }
-    },
+    // removeUsers: async (parent, { userId }) => {
+    //   try {
+    //     const deletedUser = await Users.findOneAndDelete({ _id: userId });
+    //     if (!deletedUser) {
+    //       throw new Error('User not found');
+    //     }
+    //     return deletedUser;
+    //   } catch (error) {
+    //     throw new Error('Failed to delete user');
+    //   }
+    // },
 
     removeAppointment: async (parent, { userId, appointment }) => {
       try {
