@@ -12,7 +12,7 @@ const resolvers = {
       }
     },
 
-    users: async (parent, { userId }) => {
+    user: async (parent, { userId }) => {
       try {
         const user = await Users.findOne({ _id: userId });
         if (!user) {

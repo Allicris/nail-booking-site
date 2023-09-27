@@ -1,6 +1,7 @@
 const db = require('../config/connection');
-const { Users } = require('../models'); 
+const { Users, Services } = require('../models'); 
 const usersSeeds = require('./usersSeeds.json'); 
+const serviceSeeds = require('./serviceSeeds.json');
 const cleanDB = require('./cleanDB'); 
 
 db.once('open', async () => {
@@ -9,6 +10,7 @@ db.once('open', async () => {
     await cleanDB('Users', 'users');
 
   await Users.create(usersSeeds);
+  await Services.create(serviceSeeds);
 
     console.log('All done!');
   } catch (error) {

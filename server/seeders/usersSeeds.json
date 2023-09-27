@@ -1,15 +1,18 @@
 [
     {
       "name": "Anne Marousya Kernighan",
-      "email": "anneemail@gmail.com"
+      "email": "anneemail@gmail.com",
+      "password":"Test12345"
     },
     {
       "name": "Max Kanat-Alexander",
-      "email": "maxemail@gmail.com"
+      "email": "maxemail@gmail.com",
+      "password":"Test12345"
     },
     {
       "name": "Lissa",
-      "email": "lissaLisza@gmail.com"
+      "email": "lissaLisza@gmail.com",
+      "password":"Test12345"
     }
   ]
   
