@@ -1,13 +1,14 @@
-const  { Users, Appointment } = require('../models');
+const { AuthenticationError } = require('apollo-server-express'); // Import AuthenticationError
+const { Users, Appointment } = require('../models');
 
 const resolvers = {
   Query: {
     users: async () => {
       try {
-        const users = await Users.find(); 
-        return users; 
+        const users = await Users.find();
+        return users;
       } catch (error) {
-        throw new Error('Failed to fetch users'); 
+        throw new Error('Failed to fetch users');
       }
     },
 
@@ -15,11 +16,11 @@ const resolvers = {
       try {
         const user = await Users.findOne({ _id: userId });
         if (!user) {
-          throw new Error('User not found'); 
+          throw new Error('User not found');
         }
         return user;
       } catch (error) {
-        throw new Error('Failed to fetch user'); 
+        throw new Error('Failed to fetch user');
       }
     },
   },
@@ -27,9 +28,9 @@ const resolvers = {
   Mutation: {
     addUser: async (parent, { name, email, password }) => {
       try {
-        const newUser = await Users.create({ name, email, password }); 
-        const token = signToken(newUser)
-        return { newUser, token};
+        const newUser = await Users.create({ name, email, password });
+        const token = signToken(newUser);
+        return { newUser, token };
       } catch (error) {
         throw new Error('Failed to create user');
       }
@@ -39,13 +40,13 @@ const resolvers = {
       const user = await Users.findOne({ email });
 
       if (!user) {
-        throw AuthenticationError;
+        throw new AuthenticationError('User not found'); // Use AuthenticationError
       }
 
-      const correctPw = await profile.isCorrectPassword(password);
+      const correctPw = await user.isCorrectPassword(password); // Use 'user' to call isCorrectPassword
 
       if (!correctPw) {
-        throw AuthenticationError;
+        throw new AuthenticationError('Incorrect password'); // Use AuthenticationError
       }
 
       const token = signToken(user);
@@ -57,45 +58,28 @@ const resolvers = {
         const appointment = await Appointment.create({
           appointmentDate,
           appointmentTime,
-          services,
+          services, // Define services or fetch it from somewhere
         });
-        
+
         await Users.findOneAndUpdate(
-          {_id: context.user_id },
-          { $addToSet: {appointment: appointment._id}}
-          );
+          { _id: context.user._id }, // Correct property name
+          { $addToSet: { appointment: appointment._id } }
+        );
 
-        return appointment;  
+        return appointment;
       }
-      throw AuthenicationError;
-      ('you need to be logged in!');
+      throw new AuthenticationError('You need to be logged in!'); // Use AuthenticationError
     },
-
-    // appointmentOfUser: async (parent, { userId, appointment }) => {
-    //   try {
-    //     const updatedUser = await Users.findOneAndUpdate(
-    //       { _id: userId },
-    //       { $addToSet: { appointment: appointment } },
-    //       { new: true, runValidators: true }
-    //     );
-    //     if (!updatedUser) {
-    //       throw new Error('User not found');
-    //     }
-    //     return updatedUser;
-    //   } catch (error) {
-    //     throw new Error('Failed to add appointment to user');
-    //   }
-    // },
 
     removeUser: async (parent, { userId }) => {
       try {
         const deletedUser = await Users.findOneAndDelete({ _id: userId });
         if (!deletedUser) {
-          throw new Error('User not found'); 
+          throw new Error('User not found');
         }
         return deletedUser;
       } catch (error) {
-        throw new Error('Failed to delete user'); 
+        throw new Error('Failed to delete user');
       }
     },
 
@@ -107,11 +91,11 @@ const resolvers = {
           { new: true }
         );
         if (!updatedUser) {
-          throw new Error('User not found'); 
+          throw new Error('User not found');
         }
         return updatedUser;
       } catch (error) {
-        throw new Error('Failed to remove appointment from user'); 
+        throw new Error('Failed to remove appointment from user');
       }
     },
   },
