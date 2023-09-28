@@ -53,14 +53,14 @@ const NavBar = () => {
         {isLoggedIn ? (
           <div className={`nav__items${toggleNavClass}`}>
             <span>{`Welcome ${user.user.username}`}</span>
-            <NavLink exact to="/items" activeClassName="selected" onClick={closeToggle}>
-              Items
+            <NavLink exact to="/aboutus" activeClassName="selected" onClick={closeToggle}>
+              About Us
             </NavLink>
             <NavLink exact to="/appointments" activeClassName="selected" onClick={closeToggle}>
               Appointments
             </NavLink>
-            <NavLink exact to="/" activeClassName="selected" onClick={closeToggle}>
-              LifeStyle
+            <NavLink exact to="/services" activeClassName="selected" onClick={closeToggle}>
+              Services
             </NavLink>
             <LogOutBtn />
 
