@@ -1,5 +1,8 @@
+import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+//We need a package.json installed to use these
+
 
 import App from './App.jsx';
 import Home from './pages/Home';
@@ -35,8 +38,9 @@ const router = createBrowserRouter([
       element: <Services />  
       },
       {
-      path: '/appointment',
-      element: <Appointment />  
+      path: '/savedAppointments',
+      // just like in our saved books homework
+      element: <savedAppointments />  
       },
     ]
   },
