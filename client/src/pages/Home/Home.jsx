@@ -1,7 +1,7 @@
 import React from 'react';
 import '../Home/HomePage.css';
 import About from '../Home/About'
-import Service from '../Home/Service'
+import Services from '../Home/Services'
 
 
 
@@ -11,7 +11,7 @@ const Home = () => {
         <div>
             <Home />
             <About />
-            <Service />          
+            <Services />     
         </div>
     );
 };
