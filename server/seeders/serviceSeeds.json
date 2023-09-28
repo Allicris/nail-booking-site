@@ -1,15 +1,28 @@
 [
-    {
-      "name": "manicure",
-      "description": "classic manicure, no polish"
-    },
-    {
-      "name": "french manicure",
-      "description": "some description"
-    },
-    {
-      "name": "Acrylic mani",
-      "description": "some description"
-    }
-  ]
+  {
+    "name": "Classic Manicure",
+    "price": 25,
+    "description": "Classic manicure, no polish"
+  },
+  {
+    "name": "Spa Pedicure",
+    "price": 35,
+    "description": "Relaxing spa pedicure"
+  },
+  {
+    "name": "Freestyle Acrylics",
+    "price": 65,
+    "description": "A creative take"
+  },
+  {
+    "name": "Acrylics",
+    "price": 65,
+    "description": "Any length, any design"
+  },
+  {
+    "name": "Gel Manicure",
+    "price": 45,
+    "description": "A regular gel manicure"
+  }
+]
   

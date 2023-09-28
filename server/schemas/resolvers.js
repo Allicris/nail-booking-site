@@ -12,7 +12,8 @@ const resolvers = {
       }
     },
 
-    user: async (parent, { userId }) => {
+    //not sure why but we can find the user when we out id instead of just userId
+    user: async (parent, { _id: userId }) => {
       try {
         const user = await Users.findOne({ _id: userId });
         if (!user) {
@@ -25,6 +26,7 @@ const resolvers = {
     },
   },
 
+  //not letting me add a user
   Mutation: {
     addUser: async (parent, { name, email, password }) => {
       try {

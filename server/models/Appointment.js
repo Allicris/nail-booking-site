@@ -19,6 +19,11 @@ const appointmentSchema = new Schema({
    },
 );
 
+//Custom validation to ensure at least one service is selected.
+appointmentSchema.path('services').validate(function (value) {
+  return value.length > 0;
+}, 'Atleast one service must be selected for the appointment')
+
 const Appointment = model('Appointment', appointmentSchema);
 
 module.exports = Appointment;

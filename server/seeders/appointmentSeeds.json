@@ -1,29 +1,23 @@
 [
     {
-        "date": "10/01/23",
-        "time": "3 pm",
-        "service": [
-            {
-                "_Id": "651383045bed18e3ebf57532"
-            }
+        "appointmentDate": "10/01/23",
+        "appointmentTime": "3:00",
+        "services": [
+                "65139ffddd7dd3dfccf20f84"
         ]
     },
     {
-        "date": "10/02/23",
-        "time": "10 am",
-        "service": [
-            {
-                "_Id": "651383045bed18e3ebf57532"
-            }
+        "appointmentDate": "10/02/23",
+        "appointmentTime": "10:00",
+        "services": [
+            "65139ffddd7dd3dfccf20f85"
         ]
     },
     {
-        "date": "10/02/23",
-        "time": "12 pm",
-        "service": [
-            {
-                "_Id": "651383045bed18e3ebf57532"
-              }
+        "appointmentDate": "10/02/23",
+        "appointmentTime": "12:00",
+        "services": [
+            "65139ffddd7dd3dfccf20f86"
         ]
     }
 ]
