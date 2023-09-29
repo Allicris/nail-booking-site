@@ -54,52 +54,67 @@ const resolvers = {
       return { token, user };
     },
 
-    saveAppointment: async (parent, { appointmentDate, appointmentTime }, context) => {
+    saveAppointment: async (parent, { appointmentData }, context) => {
       if (context.user) {
-        const appointment = await Appointment.create({
-          appointmentDate,
-          appointmentTime,
-          services, // Define services or fetch it from somewhere
-        });
+        try {
+          const saveAppointment = new Appointment(appointmentData);
 
-        await Users.findOneAndUpdate(
-          { _id: context.user._id }, // Correct property name
-          { $addToSet: { appointment: appointment._id } }
-        );
+          saveAppointment.user = context.user._id;
 
-        return appointment;
-      }
-      throw new AuthenticationError('You need to be logged in!'); // Use AuthenticationError
-    },
+          const savedAppointment = await saveAppointment.save();
 
-    // removeUsers: async (parent, { userId }) => {
-    //   try {
-    //     const deletedUser = await Users.findOneAndDelete({ _id: userId });
-    //     if (!deletedUser) {
-    //       throw new Error('User not found');
-    //     }
-    //     return deletedUser;
-    //   } catch (error) {
-    //     throw new Error('Failed to delete user');
-    //   }
-    // },
-
-    removeAppointment: async (parent, { userId, appointment }) => {
-      try {
-        const updatedUser = await Users.findOneAndUpdate(
-          { _id: userId },
-          { $pull: { appointment: appointment } },
-          { new: true }
-        );
-        if (!updatedUser) {
-          throw new Error('User not found');
+          return savedAppointment;
+        } catch (error) {
+          throw new Error('Failed to save appointment');
         }
-        return updatedUser;
-      } catch (error) {
-        throw new Error('Failed to remove appointment from user');
+      } else {
+        throw new AuthenticationError('You need to be logged in!'); // Use AuthenticationError
       }
     },
   },
+
+  // const savedAppointment = await Appointment.create({
+        //   appointmentDate,
+        //   appointmentTime,
+        //   services, // Define services or fetch it from somewhere
+        // });
+
+        // await Users.findOneAndUpdate(
+        //   { _id: context.user._id }, // Correct property name
+        //   { $addToSet: { savedAppointment: appointment._id } },
+        //   { new: true } //returns an updated version of savedAppointments
+        // );
+
+        // return appointment;
+
+  // removeUsers: async (parent, { userId }) => {
+  //   try {
+  //     const deletedUser = await Users.findOneAndDelete({ _id: userId });
+  //     if (!deletedUser) {
+  //       throw new Error('User not found');
+  //     }
+  //     return deletedUser;
+  //   } catch (error) {
+  //     throw new Error('Failed to delete user');
+  //   }
+  // },
+
+  //     removeAppointment: async (parent, { userId, appointment }) => {
+  //       try {
+  //         const updatedUser = await Users.findOneAndUpdate(
+  //           { _id: userId },
+  //           { $pull: { appointment: appointment } },
+  //           { new: true }
+  //         );
+  //         if (!updatedUser) {
+  //           throw new Error('User not found');
+  //         }
+  //         return updatedUser;
+  //       } catch (error) {
+  //         throw new Error('Failed to remove appointment from user');
+  //       }
+  //     },
+  //   },
 };
 
 module.exports = resolvers;
