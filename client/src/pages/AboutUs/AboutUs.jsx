@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-import aboutimg from 'path to image here '
+// import aboutimg from 'path to image here '
 
 const About = () => {
     return (
@@ -11,7 +11,7 @@ const About = () => {
                     
                     <div className='about__content'>
                         <div className='about__heading'>
-                            <SectionHeading
+                            <div
                                headingLeft="About Us"
                                headingRight=" Story "
                                subheading="Welcome"
@@ -21,12 +21,12 @@ const About = () => {
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
                         tempor incididunt ut labore et dolore magna aliqua et dolore magna aliqua. </p>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et </p>
-                        <ReadMoreBtn />
+                        <div />
                     </div>
 
                     <div className='about__images'>
-                        <AboutCard
-                            cardimg={aboutimg}
+                        <div
+                            // cardimg={aboutimg}
                         />
                     </div>
 

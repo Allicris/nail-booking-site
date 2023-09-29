@@ -1,4 +1,4 @@
-// const { AuthenticationError } = require('apollo-server-express'); // Import AuthenticationError
+const { AuthenticationError, signToken } = require('../utils/auth'); // Import AuthenticationError
 const { Users, Appointment } = require('../models');
 
 const resolvers = {
@@ -40,7 +40,6 @@ const resolvers = {
 
     login: async (parent, { email, password }) => {
       const user = await Users.findOne({ email });
-
       if (!user) {
         throw new AuthenticationError('User not found'); // Use AuthenticationError
       }

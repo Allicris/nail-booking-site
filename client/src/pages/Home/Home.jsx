@@ -1,7 +1,7 @@
 import React from 'react';
 import '../Home/HomePage.css';
-import About from '../Home/About'
-import Services from '../Home/Services'
+import About from '../AboutUs/AboutUs';
+import Services from '../Services/Services';
 
 
 
