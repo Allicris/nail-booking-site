@@ -53,68 +53,34 @@ const resolvers = {
       const token = signToken(user);
       return { token, user };
     },
+    saveAppointment: async (parent, { appointmentDate, appointmentTime }, context) => {
+      const savedAppointment = await Appointment.create({ appointmentDate, appointmentTime, services });
+      // Define services or fetch it from somewhere
+      await Users.findOneAndUpdate(
+        { _id: context.user._id }, // Correct property name
+        { $addToSet: { appointments: savedAppointment._id } },
+        { new: true } //returns an updated version of savedAppointments
+      );
 
-    saveAppointment: async (parent, { appointmentData }, context) => {
-      if (context.user) {
-        try {
-          const saveAppointment = new Appointment(appointmentData);
-
-          saveAppointment.user = context.user._id;
-
-          const savedAppointment = await saveAppointment.save();
-
-          return savedAppointment;
-        } catch (error) {
-          throw new Error('Failed to save appointment');
-        }
-      } else {
-        throw new AuthenticationError('You need to be logged in!'); // Use AuthenticationError
-      }
+      return savedAppointment;
     },
+    //     removeAppointment: async (parent, { userId, appointment }) => {
+    //       try {
+    //         const updatedUser = await Users.findOneAndUpdate(
+    //           { _id: userId },
+    //           { $pull: { appointment: appointment } },
+    //           { new: true }
+    //         );
+    //         if (!updatedUser) {
+    //           throw new Error('User not found');
+    //         }
+    //         return updatedUser;
+    //       } catch (error) {
+    //         throw new Error('Failed to remove appointment from user');
+    //       }
+    //     },
+    //   },
   },
-
-  // const savedAppointment = await Appointment.create({
-        //   appointmentDate,
-        //   appointmentTime,
-        //   services, // Define services or fetch it from somewhere
-        // });
-
-        // await Users.findOneAndUpdate(
-        //   { _id: context.user._id }, // Correct property name
-        //   { $addToSet: { savedAppointment: appointment._id } },
-        //   { new: true } //returns an updated version of savedAppointments
-        // );
-
-        // return appointment;
-
-  // removeUsers: async (parent, { userId }) => {
-  //   try {
-  //     const deletedUser = await Users.findOneAndDelete({ _id: userId });
-  //     if (!deletedUser) {
-  //       throw new Error('User not found');
-  //     }
-  //     return deletedUser;
-  //   } catch (error) {
-  //     throw new Error('Failed to delete user');
-  //   }
-  // },
-
-  //     removeAppointment: async (parent, { userId, appointment }) => {
-  //       try {
-  //         const updatedUser = await Users.findOneAndUpdate(
-  //           { _id: userId },
-  //           { $pull: { appointment: appointment } },
-  //           { new: true }
-  //         );
-  //         if (!updatedUser) {
-  //           throw new Error('User not found');
-  //         }
-  //         return updatedUser;
-  //       } catch (error) {
-  //         throw new Error('Failed to remove appointment from user');
-  //       }
-  //     },
-  //   },
 };
 
 module.exports = resolvers;
