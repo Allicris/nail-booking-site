@@ -53,7 +53,6 @@ const resolvers = {
       const token = signToken(user);
       return { token, user };
     },
-
   //   saveAppointment: async (parent, { appointmentData }, context) => {
   //     if (context.user) {
   //       try {

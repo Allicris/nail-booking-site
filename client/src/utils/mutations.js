@@ -1,15 +1,15 @@
 import { gql } from '@apollo/client';
 
 // Query to fetch a single user's profile
-export const QUERY_USER_PROFILE = gql`
-  query user($userId: ID!) {
-    user(userId: $userId) {
-      _id
-      name
-      email
-    }
-  }
-`;
+// export const QUERY_USER_PROFILE = gql`
+//   query user($userId: ID!) {
+//     user(userId: $userId) {
+//       _id
+//       name
+//       email
+//     }
+//   }
+// `;
 
 // Mutation to add a new user
 export const ADD_USER = gql`
@@ -27,14 +27,39 @@ export const ADD_USER = gql`
 
 // Mutation to log in a user
 export const LOGIN_USER = gql`
-  mutation loginUser($email: String!, $password: String!) {
-    loginUser(email: $email, password: $password) {
-      token
-      user {
+mutation Mutation($email: String!, $password: String!) {
+  login(email: $email, password: $password) {
+    token
+    user {
+      _id
+      name
+      email
+      phone
+      appointments {
         _id
-        name
-        email
+        appointmentDate
+        appointmentTime
+        services {
+          description
+          image
+          name
+          price
+          serviceId
+        }
       }
+    }
+  }
+}
+`;
+
+export const GET_SERVICES = gql`
+  query {
+    services {
+      description
+      image
+      name
+      price
+      serviceId
     }
   }
 `;
@@ -51,12 +76,32 @@ export const SAVE_APPOINTMENT = gql`
 `;
 
 // Query to fetch all appointments for a user
-export const QUERY_USER_APPOINTMENTS = gql`
-  query userAppointments($userId: ID!) {
-    userAppointments(userId: $userId) {
+// export const QUERY_USER_APPOINTMENTS = gql`
+//   query userAppointments($userId: ID!) {
+//     userAppointments(userId: $userId) {
+//       _id
+//       appointmentDate
+//       appointmentTime
+//     }
+//   }
+// `;
+
+export const REMOVE_APPOINTMENT = gql`
+mutation Mutation($bookId: String!) {
+  removeBook(bookId: $bookId) {
+    _id
+    username
+    email
+    bookCount
+    savedAppointments {
       _id
-      appointmentDate
-      appointmentTime
+      bookId
+      authors
+      description
+      title
+      image
+      link
     }
   }
-`;
+}
+`

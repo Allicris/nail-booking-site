@@ -53,7 +53,7 @@ const typeDefs = `
     login(email: String!, password: String!): Auth
     addUser(email: String!, name: String!, password: String!): Auth
     saveAppointment(appointmentData: AppointmentInput!): Appointment
-    removeAppointment(appointmentId: String!): Users
+    removeAppointment(userId: ID! appointmentId: ID!): Users
   }
 `;
 
