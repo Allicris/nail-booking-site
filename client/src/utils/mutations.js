@@ -39,6 +39,16 @@ export const LOGIN_USER = gql`
   }
 `;
 
+export const GET_SERVICES = gql`
+  query {
+    services {
+      _id
+      name
+      description
+    }
+  }
+`;
+
 // Mutation to schedule an appointment for a user
 export const SCHEDULE_APPOINTMENT = gql`
   mutation scheduleAppointment($userId: ID!, $appointmentDate: String!, $appointmentTime: String!) {
