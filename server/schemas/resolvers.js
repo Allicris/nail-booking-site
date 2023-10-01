@@ -64,22 +64,29 @@ const resolvers = {
 
       return savedAppointment;
     },
-    //     removeAppointment: async (parent, { userId, appointment }) => {
-    //       try {
-    //         const updatedUser = await Users.findOneAndUpdate(
-    //           { _id: userId },
-    //           { $pull: { appointment: appointment } },
-    //           { new: true }
-    //         );
-    //         if (!updatedUser) {
-    //           throw new Error('User not found');
-    //         }
-    //         return updatedUser;
-    //       } catch (error) {
-    //         throw new Error('Failed to remove appointment from user');
-    //       }
-    //     },
-    //   },
+    // removeAppointment: async (parent, { appointmentId }) => {
+    //   return Users.findOneAndDelete({ _id: appointmentId });
+
+    removeAppointment: async (parent, { _id: userId, appointmentId }) => {
+   return Users.findOneAndUpdate(
+          { _id: userId },
+          { $pull: { appointments: { appointmentId } } },
+          { new: true },
+   );
+    //     );
+    //     if (!updatedUser) {
+    //       throw new Error('User not found');
+    //     }
+    
+    //     return updatedUser;
+    //   } catch (error) {
+    //     // Log the error to the console or your preferred logging mechanism
+    //     console.error('Error in removeAppointment resolver:', error);
+    
+    //     // Rethrow the error to ensure it's propagated
+    //     throw new Error('Failed to remove appointment from user');
+    //   }
+    },
   },
 };
 
