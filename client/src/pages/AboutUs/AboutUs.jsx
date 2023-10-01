@@ -6,32 +6,7 @@ import React from 'react';
 const About = () => {
     return (
         <div className='about-section'>
-            <div className='container'>
-                <div className='about__wrapper'>
-                    
-                    <div className='about__content'>
-                        <div className='about__heading'>
-                            <div
-                               headingLeft="About Us"
-                               headingRight=" Story "
-                               subheading="Welcome"
-
-                            />
-                        </div>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                        tempor incididunt ut labore et dolore magna aliqua et dolore magna aliqua. </p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et </p>
-                        <div />
-                    </div>
-
-                    <div className='about__images'>
-                        <div
-                            // cardimg={aboutimg}
-                        />
-                    </div>
-
-                </div>
-            </div>
+            At our nail salon, we embrace a holistic approach to enhance your health and beauty. Our dedicated team collaborates closely with clients, focusing on a personal level to bring their vision of a radiant image to life. Our commitment revolves around achieving perfection not only in the quality of our nail services but also in the exceptional customer experience we deliver.
         </div>
     );
 };

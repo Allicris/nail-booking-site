@@ -60,3 +60,23 @@ export const QUERY_USER_APPOINTMENTS = gql`
     }
   }
 `;
+
+export const REMOVE_APPOINTMENT = gql`
+mutation Mutation($bookId: String!) {
+  removeBook(bookId: $bookId) {
+    _id
+    username
+    email
+    bookCount
+    savedBooks {
+      _id
+      bookId
+      authors
+      description
+      title
+      image
+      link
+    }
+  }
+}
+`
