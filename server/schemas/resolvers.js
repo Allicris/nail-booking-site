@@ -26,7 +26,7 @@ const resolvers = {
     },
   },
 
-  //not letting me add a user
+ 
   Mutation: {
     addUser: async (parent, { name, email, password }) => {
       try {
@@ -54,38 +54,37 @@ const resolvers = {
       return { token, user };
     },
 
-    saveAppointment: async (parent, { appointmentData }, context) => {
-      if (context.user) {
-        try {
-          const saveAppointment = new Appointment(appointmentData);
+  //   saveAppointment: async (parent, { appointmentData }, context) => {
+  //     if (context.user) {
+  //       try {
+  //         const saveAppointment = new Appointment(appointmentData);
 
-          saveAppointment.user = context.user._id;
+  //         saveAppointment.user = context.user._id;
 
-          const savedAppointment = await saveAppointment.save();
+  //         const savedAppointment = await saveAppointment.save();
 
-          return savedAppointment;
-        } catch (error) {
-          throw new Error('Failed to save appointment');
-        }
-      } else {
-        throw new AuthenticationError('You need to be logged in!'); // Use AuthenticationError
-      }
-    },
+  //         return savedAppointment;
+  //       } catch (error) {
+  //         throw new Error('Failed to save appointment');
+  //       }
+  //     } else {
+  //       throw new AuthenticationError('You need to be logged in!'); // Use AuthenticationError
+  //     }
+  //   },
+  // }
+
+  saveAppointment: async (parent, { appointmentDate, appointmentTime }, context) => {
+    const saveAppointment = await Appointment.create({ appointmentDate, appointmentTime, services });
+    // Define services or fetch it from somewhere
+    await Users.findOneAndUpdate(
+      { _id: context.user._id }, // Correct property name
+      { $addToSet: { appointments: savedAppointment._id } },
+      { new: true } //returns an updated version of savedAppointments
+    );
+
+    return saveAppointment;
   },
 
-  // const savedAppointment = await Appointment.create({
-        //   appointmentDate,
-        //   appointmentTime,
-        //   services, // Define services or fetch it from somewhere
-        // });
-
-        // await Users.findOneAndUpdate(
-        //   { _id: context.user._id }, // Correct property name
-        //   { $addToSet: { savedAppointment: appointment._id } },
-        //   { new: true } //returns an updated version of savedAppointments
-        // );
-
-        // return appointment;
 
   // removeUsers: async (parent, { userId }) => {
   //   try {
@@ -118,3 +117,5 @@ const resolvers = {
 };
 
 module.exports = resolvers;
+
+

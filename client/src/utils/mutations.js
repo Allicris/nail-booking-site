@@ -39,10 +39,10 @@ export const LOGIN_USER = gql`
   }
 `;
 
-// Mutation to schedule an appointment for a user
-export const SCHEDULE_APPOINTMENT = gql`
-  mutation scheduleAppointment($userId: ID!, $appointmentDate: String!, $appointmentTime: String!) {
-    scheduleAppointment(userId: $userId, appointmentDate: $appointmentDate, appointmentTime: $appointmentTime) {
+// Mutation to schedule an appointment for a user - changed wording to match service side resolvers
+export const SAVE_APPOINTMENT = gql`
+  mutation saveAppointment($userId: ID!, $appointmentDate: String!, $appointmentTime: String!) {
+    saveAppointment(userId: $userId, appointmentDate: $appointmentDate, appointmentTime: $appointmentTime) {
       _id
       appointmentDate
       appointmentTime
