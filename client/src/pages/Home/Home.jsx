@@ -25,7 +25,7 @@ function Home() {
   return (
     <div style={containerStyle}>
       <header>
-        <h1 style={redHeaderStyle}>Welcome to Nails</h1>
+        <h1 style={redHeaderStyle}>Welcome to M.A.A. Nail Havent"</h1>
         <p>Your Premier Nail Services Provider</p>
       </header>
       <section>
