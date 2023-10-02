@@ -14,9 +14,9 @@ const resolvers = {
     },
 
     //not sure why but we can find the user when we out id instead of just userId
-    user: async (parent, { _id: userId }) => {
+    user: async (parent, { _id }) => {
       try {
-        const user = await Users.findOne({ _id: userId });
+        const user = await Users.findOne({ _id });
         if (!user) {
           throw new Error('User not found');
         }
@@ -49,7 +49,7 @@ const resolvers = {
     login: async (parent, { email, password }) => {
       const user = await Users.findOne({ email });
       if (!user) {
-        throw AuthenticationError; // Use AuthenticationError
+        throw AuthenticationError('Invalid credentials'); // Use AuthenticationError
       }
 
       const correctPw = await user.isCorrectPassword(password); // Use 'user' to call isCorrectPassword
@@ -61,7 +61,6 @@ const resolvers = {
       const token = signToken(user);
       return { token, user };
     },
-    },
     saveAppointment: async (parent, { appointmentData }, context) => {
       try {
         const saveAppointment = await Appointment.create({
@@ -69,11 +68,10 @@ const resolvers = {
           appointmentTime: appointmentData.appointmentTime,
           services: appointmentData.services,
         });
-        // Define services or fetch it from somewhere
-       const updatedUser = await Users.findOneAndUpdate(
-          { _id: context.user._id }, // Correct property name
-          { $addToSet: { appointments: saveAppointment._id } },
-          { new: true } //returns an updated version of savedAppointments
+        await Users.findOneAndUpdate(
+          { _id: context.user._id },
+          { $push: { appointments: saveAppointment._id } },
+          { new: true }
         );
         return saveAppointment;
       } catch (error) {
@@ -84,11 +82,11 @@ const resolvers = {
         throw new ApolloError('Internal Server Error');
       }
     },
-    removeAppointment: async (parent, { userId, appointment }) => {
+    removeAppointment: async (parent, { userId, appointmentId }) => {
       try {
         const updatedUser = await Users.findOneAndUpdate(
           { _id: userId },
-          { $pull: { appointments: appointment } },
+          { $pull: { appointments: appointmentId } },
           { new: true }
         );
         if (!updatedUser) {
@@ -99,6 +97,7 @@ const resolvers = {
         throw new Error('Failed to remove appointment from user');
       }
     },
-  };
+  },
+};
 
 module.exports = resolvers;
