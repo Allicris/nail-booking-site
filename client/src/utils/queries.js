@@ -31,6 +31,7 @@ query Services {
     description
     name
     price
+    image
   }
 }
 `;

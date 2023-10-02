@@ -17,6 +17,7 @@
     "concurrently": "^8.2.0"
   },
   "dependencies": {
+    "react-bootstrap": "^2.9.0",
     "react-datepicker": "^4.18.0"
   }
 }
