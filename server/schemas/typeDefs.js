@@ -43,6 +43,7 @@ const typeDefs = `
   }
 
   type Query {
+    me: Users
     users: [Users]
     user(_id: ID): Users
     services: [Service]

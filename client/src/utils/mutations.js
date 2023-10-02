@@ -1,25 +1,14 @@
 import { gql } from '@apollo/client';
 
-// Query to fetch a single user's profile
-// export const QUERY_USER_PROFILE = gql`
-//   query user($userId: ID!) {
-//     user(userId: $userId) {
-//       _id
-//       name
-//       email
-//     }
-//   }
-// `;
-
 // Mutation to add a new user
 export const ADD_USER = gql`
   mutation addUser($name: String!, $email: String!, $password: String!) {
     addUser(name: $name, email: $email, password: $password) {
       token
       user {
-        _id
         name
         email
+        password
       }
     }
   }
@@ -52,14 +41,12 @@ mutation Mutation($email: String!, $password: String!) {
 }
 `;
 
-// Mutation to schedule an appointment for a user - changed wording to match service side resolvers
 export const SAVE_APPOINTMENT = gql`
 mutation Mutation($appointmentData: AppointmentInput!) {
   saveAppointment(appointmentData: $appointmentData) {
     appointmentDate
     appointmentTime
     services {
-      _id
       description
       name
       price
@@ -68,6 +55,23 @@ mutation Mutation($appointmentData: AppointmentInput!) {
 }
 `;
 
+export const REMOVE_APPOINTMENT = gql`
+mutation Mutation($userId: ID!, $appointmentId: ID!) {
+  removeAppointment(userId: $userId, appointmentId: $appointmentId) {
+    appointments {
+      appointmentDate
+      appointmentTime
+      services {
+        description
+        name
+        price
+      }
+    }
+  }
+}
+`;
+
+//I don't know if we need this
 // Query to fetch all appointments for a user
 // export const QUERY_USER_APPOINTMENTS = gql`
 //   query userAppointments($userId: ID!) {
@@ -79,22 +83,14 @@ mutation Mutation($appointmentData: AppointmentInput!) {
 //   }
 // `;
 
-export const REMOVE_APPOINTMENT = gql`
-mutation Mutation($bookId: String!) {
-  removeBook(bookId: $bookId) {
-    _id
-    username
-    email
-    bookCount
-    savedAppointments {
-      _id
-      bookId
-      authors
-      description
-      title
-      image
-      link
-    }
-  }
-}
-`
+//I dont know if we need this
+// Query to fetch a single user's profile
+// export const QUERY_USER_PROFILE = gql`
+//   query user($userId: ID!) {
+//     user(userId: $userId) {
+//       _id
+//       name
+//       email
+//     }
+//   }
+// `;

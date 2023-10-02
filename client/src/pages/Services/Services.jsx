@@ -1,11 +1,10 @@
-import React from 'react';
-import { useState } from 'react'
+import React, { useState } from 'react';
 import { useQuery } from '@apollo/client';
 import { GET_SERVICES } from '../../utils/queries';
-import Footer from '../../components/Footer';
 import { Button, Container } from 'react-bootstrap';
 import AppointmentForm from '../../components/AppointmentForm';
-import "./services.css"
+//Services can't be declared twice
+// import Services from "./services.css"
 
 const Services = () => {
 const [selectedServices, setSelectedServices] = useState([]);
@@ -44,7 +43,6 @@ return (
           </li>
         ))}
       </ul>
-      {/* <Footer /> Include the Footer component */}
     </div>
     <div>
     <AppointmentForm 
