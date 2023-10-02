@@ -2,8 +2,8 @@ import React from 'react';
 import { useQuery } from '@apollo/client';
 import {GET_SERVICES} from '../utils/queries';
 import { SAVE_APPOINTMENT } from '../utils/mutations';
-import Accordion from 'react-bootstrap/Accordion';
-import Button from 'react-bootstrap/Button';
+import { Accordion, Button } from 'react-bootstrap';
+
 
 function ServicesAndAppointments() {
   const { loading, error, data } = useQuery(GET_SERVICES);

@@ -1,17 +1,27 @@
 import React from 'react';
+import { useState } from 'react'
 import { useQuery } from '@apollo/client';
 import { GET_SERVICES } from '../../utils/queries';
-import ServicesAndAppointments from '../../components/servicesAccordian';
+import { Button, Container } from 'react-bootstrap';
+import AppointmentForm from '../../components/AppointmentForm';
+
 
 const Services = () => {
-  const { loading, error, data } = useQuery(GET_SERVICES);
+const [selectedServices, setSelectedServices] = useState([]);
 
+const { loading, error, data } = useQuery(GET_SERVICES);
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
+ 
+const services = data ? data.services : [];
 
-  const services = data.services;
+const addtoAppointment = (service) => {
+setSelectedServices([...selectedServices, service]);
+};  
 
-  return (
+return (
+    <>
+    <Container>
     <div>
       <h1>Services</h1>
       <ul>
@@ -19,13 +29,18 @@ const Services = () => {
           <li key={service._id}>
             <h3>{service.name}</h3>
             <p>{service.description}</p>
-            {/* Add other fields as needed */}
+            <Button variant="dark" onClick={() => addtoAppointment(service)} >Add to my Appointment</Button>
           </li>
         ))}
       </ul>
     </div>
-  );
-
-};
-
-export default Services;
+    <div>
+    <AppointmentForm 
+      selectedServices={selectedServices}
+      setSelectedServices={{setSelectedServices}}
+      />
+  </div>
+  </Container>
+</>
+  )}
+export default Services
