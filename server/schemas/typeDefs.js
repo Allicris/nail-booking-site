@@ -36,7 +36,6 @@ const typeDefs = `
   }
 
   input ServiceInput {
-    _id: ID!
     name: String!
     price: Float!
     image: String
