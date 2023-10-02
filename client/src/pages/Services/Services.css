@@ -6,13 +6,19 @@
 li {
   list-style-type: none;
 }
-.services-description {
+.services-details {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
 }
 .services-item {
   padding: 20px;
+}
+.services-description {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 input {
   display: block;
