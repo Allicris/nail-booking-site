@@ -61,45 +61,45 @@ const resolvers = {
       const token = signToken(user);
       return { token, user };
     },
-     saveAppointment: async (parent, { appointmentData }, context) => {
+    saveAppointment: async (parent, { appointmentData }, context) => {
       try {
-       const saveAppointment = await Appointment.create({ 
-        appointmentDate: appointmentData.appointmentDate,
-        appointmentDate: appointmentData.appointmentTime,
-        services: appointmentData.services
+        const saveAppointment = await Appointment.create({
+          appointmentDate: appointmentData.appointmentDate,
+          appointmentTime: appointmentData.appointmentTime,
+          services: appointmentData.services,
         });
-       // Define services or fetch it from somewhere
-       await Users.findOneAndUpdate(
-        { _id: context.user._id }, // Correct property name
-         { $addToSet: { appointments: saveAppointment._id } },
-         { new: true } //returns an updated version of savedAppointments
-       );
+        // Define services or fetch it from somewhere
+        await Users.findOneAndUpdate(
+          { _id: context.user._id }, // Correct property name
+          { $addToSet: { appointments: saveAppointment._id } },
+          { new: true } //returns an updated version of savedAppointments
+        );
 
-       return saveAppointment;
-    } catch (error) {
-      if (error.name === 'ValidationError') {
-        const validationErrors = Object.values(error.errors).map(err => err.message);
-        throw new UserInputError('Validation Error', { validationErrors });
-      } 
-      throw new ApolloError('Internal Server Error');
-    }
-    //     removeAppointment: async (parent, { userId, appointment }) => {
-    //       try {
-    //         const updatedUser = await Users.findOneAndUpdate(
-    //           { _id: userId },
-    //           { $pull: { appointments: appointment } },
-    //           { new: true }
-    //         );
-    //         if (!updatedUser) {
-    //           throw new Error('User not found');
-    //         }
-    //         return updatedUser;
-    //       } catch (error) {
-    //         throw new Error('Failed to remove appointment from user');
-    //       }
-    //     },
+        return saveAppointment;
+      } catch (error) {
+        if (error.name === 'ValidationError') {
+          const validationErrors = Object.values(error.errors).map(err => err.message);
+          throw new UserInputError('Validation Error', { validationErrors });
+        }
+        throw new ApolloError('Internal Server Error');
+      }
+    },
+    removeAppointment: async (parent, { userId, appointment }) => {
+      try {
+        const updatedUser = await Users.findOneAndUpdate(
+          { _id: userId },
+          { $pull: { appointments: appointment } },
+          { new: true }
+        );
+        if (!updatedUser) {
+          throw new Error('User not found');
+        }
+        return updatedUser;
+      } catch (error) {
+        throw new Error('Failed to remove appointment from user');
+      }
+    },
   },
-},
 };
 
 module.exports = resolvers;
