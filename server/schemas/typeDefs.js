@@ -19,7 +19,7 @@ const typeDefs = `
   type Service {
     name: String!
     price: Float!
-    serviceId: String!
+    _id: ID!
     image: String
     description: String!
   }

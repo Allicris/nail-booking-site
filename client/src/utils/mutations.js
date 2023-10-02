@@ -66,13 +66,18 @@ export const GET_SERVICES = gql`
 
 // Mutation to schedule an appointment for a user - changed wording to match service side resolvers
 export const SAVE_APPOINTMENT = gql`
-  mutation saveAppointment($userId: ID!, $appointmentDate: String!, $appointmentTime: String!) {
-    saveAppointment(userId: $userId, appointmentDate: $appointmentDate, appointmentTime: $appointmentTime) {
-      _id
-      appointmentDate
-      appointmentTime
+mutation SaveAppointment($appointmentData: AppointmentInput!) {
+  saveAppointment(appointmentData: $appointmentData) {
+    appointmentDate
+    appointmentTime
+    services {
+      name
+      description
+      price
+      serviceId
     }
   }
+}
 `;
 
 // Query to fetch all appointments for a user
