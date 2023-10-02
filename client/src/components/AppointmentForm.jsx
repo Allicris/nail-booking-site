@@ -1,8 +1,7 @@
 //form for appointment
 import React, { useState } from 'react';
 
-const AppointmentForm = ({ onScheduleAppointment }) => {
-  const [name, setName] = useState('');
+const AppointmentForm = ({ selectedServices, setSelectedServices }) => {
   const [appointmentDate, setAppointmentDate] = useState('');
   const [appointmentTime, setAppointmentTime] = useState('');
 
@@ -10,25 +9,24 @@ const AppointmentForm = ({ onScheduleAppointment }) => {
     e.preventDefault();
     
     // Validate form inputs (add more validation as needed)
-    if (!name || !appointmentDate || !appointmentTime) {
+    if (!appointmentDate || !appointmentTime) {
       alert('Please fill in all fields');
       return;
     }
 
     // Create an appointment object
     const appointment = {
-      name,
+      services: selectedServices,
       appointmentDate,
       appointmentTime,
     };
 
-    // Call the callback function to schedule the appointment
-    onScheduleAppointment(appointment);
+    //still need to add submit form and add to user
 
     // Clear the form inputs
-    setName('');
     setAppointmentDate('');
     setAppointmentTime('');
+    setSelectedServices([]);
   };
 
   return (
@@ -36,12 +34,12 @@ const AppointmentForm = ({ onScheduleAppointment }) => {
       <h2>Schedule an Appointment</h2>
       <form onSubmit={handleSubmit}>
         <div>
-          <label>Name:</label>
-          <input
-            type="text"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
+          <label>Selected Services:</label>
+          <ul>
+            {selectedServices.map((service) => (
+              <li key={service.id}>{service.name}</li>
+            ))}
+           </ul> 
         </div>
         <div>
           <label>Appointment Date:</label>
