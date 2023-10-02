@@ -82,9 +82,7 @@ const resolvers = {
     );
 
     return saveAppointment;
-  },
-
-
+  }
   // removeUsers: async (parent, { userId }) => {
   //   try {
   //     const deletedUser = await Users.findOneAndDelete({ _id: userId });
@@ -112,9 +110,7 @@ const resolvers = {
   //         throw new Error('Failed to remove appointment from user');
   //       }
   //     },
-  //   },
+},
 };
 
 module.exports = resolvers;
-
-
