@@ -7,7 +7,7 @@ import discoverLogo from '../assets/images/discover-logo.png';
 
 const Footer = () => {
   const columnClasses = 'column w-1/2 xl:w-1/4 px-10';
-  const spanCardClasses = 'w-14 flex justify-center items-center text-black mr-4 text-sm py-1 px-2 inline';
+  const spanCardClasses = 'w-14 flex justify-center items-center text-light-grey mr-4 text-sm py-1 px-2 inline'; // Changed text color to light grey
   const spaceBetweenCardsAndLink = 'mb-4';
 
   const smallImageStyle = {
@@ -40,17 +40,19 @@ const Footer = () => {
         </div>
         <div className={columnClasses}>
           <p className={`text-xl font-normal ${spaceBetweenCardsAndLink}`}>
-            <Link to="/aboutus" className="text-primary hover:underline">
+            <Link to="/aboutus" className="text-light-grey hover:underline"> {/* Changed text color to light grey */}
               About Us
             </Link>
           </p>
           <p className="font-light mt-2">
-            Contact Us: <a href="mailto:bookings@maanailheaven.com">bookings@maanailheaven.com</a>
+            Contact Us: <a href="mailto:bookings@maanailheaven.com" className="text-light-grey"> {/* Changed text color to light grey */}
+              bookings@maanailhaven.com
+            </a>
           </p>
         </div>
       </div>
       <div className="footer-bottom bg-primary-dark pt-5 pb-4 flex items-center justify-center">
-        <p className="text-sm font-light text-primary-light">
+        <p className="text-sm font-light text-light-grey"> {/* Changed text color to light grey */}
           here is copyright info blah blah
         </p>
       </div>
