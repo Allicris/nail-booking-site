@@ -1,5 +1,6 @@
 const { AuthenticationError, signToken } = require('../utils/auth'); // Import AuthenticationError
-const { Users, Appointment } = require('../models');
+const { Users, Appointment, Services } = require('../models');
+const { UserInputError, ApolloError } = require('apollo-server-errors');
 
 const resolvers = {
   Query: {
@@ -24,9 +25,16 @@ const resolvers = {
         throw new Error('Failed to fetch user');
       }
     },
+    services: async () => {
+      try {
+        const services = await Services.find();
+        return services;
+      } catch (error) {
+        throw new Error('Error fetching services');
+      }
+    },
   },
 
- 
   Mutation: {
     addUser: async (parent, { name, email, password }) => {
       try {
@@ -53,63 +61,40 @@ const resolvers = {
       const token = signToken(user);
       return { token, user };
     },
-  //   saveAppointment: async (parent, { appointmentData }, context) => {
-  //     if (context.user) {
-  //       try {
-  //         const saveAppointment = new Appointment(appointmentData);
+     saveAppointment: async (parent, { appointmentInput }, context) => {
+      try {
+       const saveAppointment = await Appointment.create({ appointmentInput });
+       // Define services or fetch it from somewhere
+       await Users.findOneAndUpdate(
+        { _id: context.user._id }, // Correct property name
+         { $addToSet: { appointments: saveAppointment._id } },
+         { new: true } //returns an updated version of savedAppointments
+       );
 
-  //         saveAppointment.user = context.user._id;
-
-  //         const savedAppointment = await saveAppointment.save();
-
-  //         return savedAppointment;
-  //       } catch (error) {
-  //         throw new Error('Failed to save appointment');
-  //       }
-  //     } else {
-  //       throw new AuthenticationError('You need to be logged in!'); // Use AuthenticationError
-  //     }
-  //   },
-  // }
-
-  saveAppointment: async (parent, { appointmentDate, appointmentTime }, context) => {
-    const saveAppointment = await Appointment.create({ appointmentDate, appointmentTime, services });
-    // Define services or fetch it from somewhere
-    await Users.findOneAndUpdate(
-      { _id: context.user._id }, // Correct property name
-      { $addToSet: { appointments: savedAppointment._id } },
-      { new: true } //returns an updated version of savedAppointments
-    );
-
-    return saveAppointment;
-  }
-  // removeUsers: async (parent, { userId }) => {
-  //   try {
-  //     const deletedUser = await Users.findOneAndDelete({ _id: userId });
-  //     if (!deletedUser) {
-  //       throw new Error('User not found');
-  //     }
-  //     return deletedUser;
-  //   } catch (error) {
-  //     throw new Error('Failed to delete user');
-  //   }
-  // },
-
-  //     removeAppointment: async (parent, { userId, appointment }) => {
-  //       try {
-  //         const updatedUser = await Users.findOneAndUpdate(
-  //           { _id: userId },
-  //           { $pull: { appointment: appointment } },
-  //           { new: true }
-  //         );
-  //         if (!updatedUser) {
-  //           throw new Error('User not found');
-  //         }
-  //         return updatedUser;
-  //       } catch (error) {
-  //         throw new Error('Failed to remove appointment from user');
-  //       }
-  //     },
+       return saveAppointment;
+    } catch (error) {
+      if (error.name === 'ValidationError') {
+        const validationErrors = Object.values(error.errors).map(err => err.message);
+        throw new UserInputError('Validation Error', { validationErrors });
+      } 
+      throw new ApolloError('Internal Server Error');
+    }
+    //     removeAppointment: async (parent, { userId, appointment }) => {
+    //       try {
+    //         const updatedUser = await Users.findOneAndUpdate(
+    //           { _id: userId },
+    //           { $pull: { appointment: appointment } },
+    //           { new: true }
+    //         );
+    //         if (!updatedUser) {
+    //           throw new Error('User not found');
+    //         }
+    //         return updatedUser;
+    //       } catch (error) {
+    //         throw new Error('Failed to remove appointment from user');
+    //       }
+    //     },
+  },
 },
 };
 

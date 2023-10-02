@@ -47,6 +47,7 @@ const typeDefs = `
     me: Users
     users: [Users]
     user(_id: ID): Users
+    services: [Service]
   }
 
   type Mutation {
