@@ -62,9 +62,9 @@ const router = createBrowserRouter([
       element: <Services />  
       },
       {
-      path: '/saveAppointments',
+      path: '/savedAppointments',
       // just like in our saved books homework
-      element: <saveAppointments />
+      element: <SavedAppointments />
       },
     ]
   },

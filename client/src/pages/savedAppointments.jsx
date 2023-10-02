@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Container, Row, Col, Card, Button } from 'react-bootstrap';
 import { useQuery, useMutation } from '@apollo/client';
 import Auth from '../utils/auth';
 import { removeAppointmentId } from '../utils/localStorage';
@@ -17,7 +18,7 @@ const SavedAppointments = () => {
       </h3>
     )
   }
-  const handleDeleteAppointment = async (bookId) => {
+  const handleDeleteAppointment = async (appointmentId) => {
     const token = Auth.loggedIn() ? Auth.getToken() : null;
     if (!token) {
       return false;
@@ -44,7 +45,7 @@ const SavedAppointments = () => {
       </div>
       <Container>
         <h2>
-          {userData.savedAppointment.length
+          {userData.savedAppointment && userData.savedAppointment.length
             ? `Viewing ${userData.savedAppointment.length} saved ${userData.savedAppointment.length === 1 ? 'appointment' : 'appointments'}:`
             : 'You have no saved appointments!'}
         </h2>
