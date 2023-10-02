@@ -170,8 +170,8 @@ const Navbar = () => {
               <Link className="btn btn-lg btn-light m-2" to="/savedAppointments">
                 Saved Appointments
               </Link>
-              <Link className="btn btn-lg btn-light m-2" to="/Home">
-                Home
+              <Link className="btn btn-lg btn-light m-2" to="/aboutus">
+                About Us
               </Link>
             </>
           )}
