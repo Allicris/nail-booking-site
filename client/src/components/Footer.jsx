@@ -81,18 +81,17 @@
 // export default Footer;
 
 import React from 'react';
+import { Link } from 'react-router-dom'; // Import Link from react-router-dom for creating clickable links.
 
 const Footer = () => {
   const columnClasses = 'column w-1/2 xl:w-1/4 px-10';
   const spanCardClasses = 'w-14 flex justify-center items-center bg-primary text-black mr-4 text-sm py-1 px-2';
+
   return (
-    <div className="footer">
+    <div className="footer" style={{ backgroundColor: 'black' }}>
       <div className="footer-top bg-black text-primary flex flex-wrap p-10 lg:px-40 lg:py-28">
         <div className={columnClasses}>
-          <p className="text-4xl font-light text-left">Write something here </p>
-          <p className="mt-3 font-thin pr-10">
-            Beauty matters
-          </p>
+          <p className="mt-3 font-thin pr-10">Beauty matters</p>
           <div className="flex mt-6">
             <span className={`${spanCardClasses} font-bold`}>Visa</span>
             <span className={spanCardClasses}>shopify</span>
@@ -100,9 +99,14 @@ const Footer = () => {
           </div>
         </div>
         <div className={columnClasses}>
-          <p className="text-xl font-normal">Our Salon</p>
-          <p className="font-light mt-2">About Us</p>
-          <p className="font-light mt-2">Contact Us</p>
+          {/* Add a clickable "About Us" button */}
+          <p className="text-xl font-normal">
+            <Link to="/about-us" className="text-primary hover:underline">
+              About Us
+            </Link>
+          </p>
+          {/* Removed "Our Salon" */}
+          <p className="font-light mt-2">Contact Us: <a href="mailto:bookings@maanailheaven.com">bookings@maanailheaven.com</a></p>
         </div>
         <div className={`${columnClasses} mt-10 xl:mt-0`}>
           <p className="text-xl font-normal">Contact Us</p>

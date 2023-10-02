@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 import { useQuery, useMutation } from '@apollo/client';
 import Auth from '../utils/auth';
+import Footer from '../components/Footer';
 // import { removeAppointmentId } from '../utils/localStorage';
 // import { REMOVE_APPOINTMENT } from '../utils/mutations';
 //We need to create a query that gets all of our information
@@ -118,6 +119,7 @@ const SavedBooks = () => {
       <p>
         Saved Appointments
       </p>
+      <Footer /> {/* Include the Footer component */}
     </>
   );
 };

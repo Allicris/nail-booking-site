@@ -145,11 +145,11 @@ const Navbar = () => {
       <div className="container flex-column justify-space-between-lg justify-center align-center text-center">
         <Link className="text-white" to="/"> {/* Updated text color to text-white */}
           <h1 className="m-0" style={{ fontSize: '3rem' }}>
-            Nail Booking
+          M.A.A. Nail Haven 
           </h1>
         </Link>
         <p className="m-0" style={{ fontSize: '1.75rem', fontWeight: '700' }}>
-          Nails......
+          It's all about nails...
         </p>
         <div>
           {Auth.loggedIn() ? (
@@ -164,15 +164,16 @@ const Navbar = () => {
               <Link className="btn btn-lg btn-light m-2" to="/signup">
                 Signup
               </Link>
+              <Link className="btn btn-lg btn-light m-2" to="/aboutus">
+                About Us
+              </Link>
               <Link className="btn btn-lg btn-light m-2" to="/services">
                 Services
               </Link>
               <Link className="btn btn-lg btn-light m-2" to="/savedAppointments">
                 Saved Appointments
               </Link>
-              <Link className="btn btn-lg btn-light m-2" to="/aboutus">
-                About Us
-              </Link>
+             
             </>
           )}
         </div>
