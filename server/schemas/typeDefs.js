@@ -17,7 +17,7 @@ const typeDefs = `
   }
 
   type Service {
-    name: [String]!
+    name: String!
     price: Float!
     _id: ID!
     image: String
