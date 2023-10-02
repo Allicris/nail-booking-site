@@ -23,3 +23,14 @@ export const LOGIN_USER = gql`
     }
   }
 `;
+
+export const GET_SERVICES = gql`
+query Services {
+  services {
+    _id
+    description
+    name
+    price
+  }
+}
+`;

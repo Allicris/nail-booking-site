@@ -52,18 +52,6 @@ mutation Mutation($email: String!, $password: String!) {
 }
 `;
 
-export const GET_SERVICES = gql`
-  query {
-    services {
-      description
-      image
-      name
-      price
-      serviceId
-    }
-  }
-`;
-
 // Mutation to schedule an appointment for a user - changed wording to match service side resolvers
 export const SAVE_APPOINTMENT = gql`
 mutation SaveAppointment($appointmentData: AppointmentInput!) {
