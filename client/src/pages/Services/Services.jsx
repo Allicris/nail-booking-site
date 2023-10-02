@@ -2,6 +2,7 @@ import React from 'react';
 import { useQuery } from '@apollo/client';
 import { GET_SERVICES } from '../../utils/queries';
 import ServicesAndAppointments from '../../components/servicesAccordian';
+import Footer from '../../components/Footer';
 
 const Services = () => {
   const { loading, error, data } = useQuery(GET_SERVICES);
@@ -23,6 +24,7 @@ const Services = () => {
           </li>
         ))}
       </ul>
+      <Footer /> {/* Include the Footer component */}
     </div>
   );
 
