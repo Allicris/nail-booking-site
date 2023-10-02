@@ -1,5 +1,5 @@
 import React from 'react';
-import Services from '../Services/Services';
+// import Services from '../Services/Services';
 // import SavedAppointments from './pages/savedAppointments';
 import serviceImage from '../../assets/images/service-pic.png';
 import creativeNailsImage from '../../assets/images/creativeNails-pic.png';
@@ -25,7 +25,7 @@ function Home() {
   return (
     <div style={containerStyle}>
       <header>
-        <h1 style={redHeaderStyle}>Welcome to Nails</h1>
+        <h1 style={redHeaderStyle}>Welcome to M.A.A. Nail Haven</h1>
         <p>Your Premier Nail Services Provider</p>
       </header>
       <section>
@@ -46,7 +46,7 @@ function Home() {
       <section>
         <h2 style={redHeaderStyle}>Our Services</h2>
         <>
-          <Services />
+        
           {/* Apply the smallImageStyle to the image */}
           <img src={serviceImage} alt="French tips manicure" style={smallImageStyle} />
         </>

@@ -54,15 +54,15 @@ mutation Mutation($email: String!, $password: String!) {
 
 // Mutation to schedule an appointment for a user - changed wording to match service side resolvers
 export const SAVE_APPOINTMENT = gql`
-mutation SaveAppointment($appointmentData: AppointmentInput!) {
+mutation Mutation($appointmentData: AppointmentInput!) {
   saveAppointment(appointmentData: $appointmentData) {
     appointmentDate
     appointmentTime
     services {
-      name
+      _id
       description
+      name
       price
-      serviceId
     }
   }
 }

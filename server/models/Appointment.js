@@ -12,6 +12,23 @@ const appointmentSchema = new Schema({
   },
     services: [
       {
+        name: {
+          type: String,
+          required: true,
+        },
+        price: {
+          type: Number,
+          required: true,
+        },
+        image: {
+          type: String,
+        },
+        description: {
+          type: String,
+          required: true,
+        },
+      },
+      {
         type: Schema.Types.ObjectId,
         ref: 'Services'
       }

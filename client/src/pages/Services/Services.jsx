@@ -2,10 +2,10 @@ import React from 'react';
 import { useState } from 'react'
 import { useQuery } from '@apollo/client';
 import { GET_SERVICES } from '../../utils/queries';
+
 import { Button, Container } from 'react-bootstrap';
 import AppointmentForm from '../../components/AppointmentForm';
 import "./services.css"
-
 
 const Services = () => {
 const [selectedServices, setSelectedServices] = useState([]);
@@ -44,6 +44,7 @@ return (
           </li>
         ))}
       </ul>
+      <Footer /> {/* Include the Footer component */}
     </div>
     <div>
     <AppointmentForm 
