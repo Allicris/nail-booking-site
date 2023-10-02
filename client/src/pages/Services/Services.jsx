@@ -3,8 +3,7 @@ import { useQuery } from '@apollo/client';
 import { GET_SERVICES } from '../../utils/queries';
 import { Button, Container } from 'react-bootstrap';
 import AppointmentForm from '../../components/AppointmentForm';
-//Services can't be declared twice
-// import Services from "./services.css"
+import "./services.css"
 
 const Services = () => {
 const [selectedServices, setSelectedServices] = useState([]);
@@ -29,11 +28,11 @@ return (
           <li key={service._id} >
             <div className='services-item'>
             <h3>{service.name}</h3>
-            <div className='services-description'>
+            <div className='services-details'>
               <div>
-                <img src='{service.image}' />
+                <img src={service.image} />
               </div>
-              <div>
+              <div className='services-description'>
             <p>{service.description}</p>
             <Button variant="dark" onClick={() => addtoAppointment(service)} >Add to my Appointment</Button>
             </div>
