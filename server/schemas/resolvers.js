@@ -61,9 +61,13 @@ const resolvers = {
       const token = signToken(user);
       return { token, user };
     },
-     saveAppointment: async (parent, { appointmentInput }, context) => {
+     saveAppointment: async (parent, { appointmentData }, context) => {
       try {
-       const saveAppointment = await Appointment.create({ appointmentInput });
+       const saveAppointment = await Appointment.create({ 
+        appointmentDate: appointmentData.appointmentDate,
+        appointmentDate: appointmentData.appointmentTime,
+        services: appointmentData.services
+        });
        // Define services or fetch it from somewhere
        await Users.findOneAndUpdate(
         { _id: context.user._id }, // Correct property name
@@ -83,7 +87,7 @@ const resolvers = {
     //       try {
     //         const updatedUser = await Users.findOneAndUpdate(
     //           { _id: userId },
-    //           { $pull: { appointment: appointment } },
+    //           { $pull: { appointments: appointment } },
     //           { new: true }
     //         );
     //         if (!updatedUser) {
