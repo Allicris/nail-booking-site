@@ -16,7 +16,7 @@ const About = () => {
         </p>
         <img src={aboutUsImage} alt="Manicure with a red rose" style={imageStyle} />
       </div>
-      <Footer /> {/* Include the Footer component */}
+      {/* <Footer /> Include the Footer component */}
     </>
   );
 };

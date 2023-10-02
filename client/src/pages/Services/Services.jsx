@@ -2,7 +2,7 @@ import React from 'react';
 import { useState } from 'react'
 import { useQuery } from '@apollo/client';
 import { GET_SERVICES } from '../../utils/queries';
-
+import Footer from '../../components/Footer';
 import { Button, Container } from 'react-bootstrap';
 import AppointmentForm from '../../components/AppointmentForm';
 import "./services.css"
@@ -44,7 +44,7 @@ return (
           </li>
         ))}
       </ul>
-      <Footer /> {/* Include the Footer component */}
+      {/* <Footer /> Include the Footer component */}
     </div>
     <div>
     <AppointmentForm 
