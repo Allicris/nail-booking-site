@@ -31,7 +31,6 @@ const AppointmentForm = ({ selectedServices, setSelectedServices }) => {
 
   return (
     <div>
-      <h2>Schedule an Appointment</h2>
       <form onSubmit={handleSubmit}>
         <div>
           <label>Selected Services:</label>
