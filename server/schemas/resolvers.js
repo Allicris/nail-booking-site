@@ -61,6 +61,7 @@ const resolvers = {
       const token = signToken(user);
       return { token, user };
     },
+    },
     saveAppointment: async (parent, { appointmentData }, context) => {
       try {
         const saveAppointment = await Appointment.create({
@@ -69,12 +70,11 @@ const resolvers = {
           services: appointmentData.services,
         });
         // Define services or fetch it from somewhere
-        await Users.findOneAndUpdate(
+       const updatedUser = await Users.findOneAndUpdate(
           { _id: context.user._id }, // Correct property name
           { $addToSet: { appointments: saveAppointment._id } },
           { new: true } //returns an updated version of savedAppointments
         );
-
         return saveAppointment;
       } catch (error) {
         if (error.name === 'ValidationError') {
@@ -99,7 +99,6 @@ const resolvers = {
         throw new Error('Failed to remove appointment from user');
       }
     },
-  },
-};
+  };
 
 module.exports = resolvers;

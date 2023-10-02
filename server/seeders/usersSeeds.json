@@ -3,7 +3,7 @@
       "name": "Anne Marousya Kernighan",
       "email": "anneemail@gmail.com",
       "password":"Test12345",
-      "appointment": [
+      "appointments": [
         "6513a7a62222fccbf08f2416"
       ]
     },
@@ -11,7 +11,7 @@
       "name": "Max Kanat-Alexander",
       "email": "maxemail@gmail.com",
       "password":"Test12345",
-      "appointment": [
+      "appointments": [
         "6513a7a62222fccbf08f2417"
       ]
     },
@@ -19,7 +19,7 @@
       "name": "Lissa",
       "email": "lissaLisza@gmail.com",
       "password":"Test12345",
-      "appointment": [
+      "appointments": [
         "6513a7a62222fccbf08f2418"
       ]
     }
