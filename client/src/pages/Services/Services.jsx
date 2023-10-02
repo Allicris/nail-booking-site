@@ -1,7 +1,7 @@
 import React from 'react';
 import { useQuery } from '@apollo/client';
 import { GET_SERVICES } from '../../utils/queries';
-import ServicesAndAppointments from '../../components/servicesAccordian';
+// import ServicesAndAppointments from '../../components/servicesAccordian';
 import Footer from '../../components/Footer';
 
 const Services = () => {
