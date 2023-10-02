@@ -21,7 +21,7 @@ const AppointmentForm = ({ selectedServices, setSelectedServices }) => {
       appointmentTime,
     };
 
-    //submit form and add to user
+    //still need to add submit form and add to user
 
     // Clear the form inputs
     setAppointmentDate('');

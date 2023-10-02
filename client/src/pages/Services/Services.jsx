@@ -4,6 +4,7 @@ import { useQuery } from '@apollo/client';
 import { GET_SERVICES } from '../../utils/queries';
 import { Button, Container } from 'react-bootstrap';
 import AppointmentForm from '../../components/AppointmentForm';
+import "./services.css"
 
 
 const Services = () => {
@@ -21,15 +22,25 @@ setSelectedServices([...selectedServices, service]);
 
 return (
     <>
-    <Container>
+    <Container className="services-container">
     <div>
       <h1>Services</h1>
       <ul>
         {services.map(service => (
-          <li key={service._id}>
+          <li key={service._id} >
+            <div className='services-item'>
             <h3>{service.name}</h3>
+            <div className='services-description'>
+              <div>
+                <img src='{service.image}' />
+              </div>
+              <div>
             <p>{service.description}</p>
             <Button variant="dark" onClick={() => addtoAppointment(service)} >Add to my Appointment</Button>
+            </div>
+            </div>
+            </div> 
+            <hr></hr>        
           </li>
         ))}
       </ul>
