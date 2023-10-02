@@ -3,25 +3,25 @@
 const typeDefs = `
   type Users {
     _id: ID
-    name: String!
+    name: String
     phone: String
-    email: String!
+    email: String
     appointments: [Appointment]
   }
 
   type Appointment {
     _id: ID
-    appointmentDate: String!
-    appointmentTime: String!
+    appointmentDate: String
+    appointmentTime: String
     services: [Service]
   }
 
   type Service {
-    name: String!
-    price: Float!
     _id: ID
+    name: String
+    price: Float
     image: String
-    description: String!
+    description: String
   }
 
   type Auth {
@@ -30,20 +30,19 @@ const typeDefs = `
   }
 
   input AppointmentInput {
-    appointmentDate: String!
-    appointmentTime: String!
-    services: [ServiceInput]!
+    appointmentDate: String
+    appointmentTime: String
+    services: [ServiceInput]
   }
 
   input ServiceInput {
-    name: String!
-    price: Float!
+    name: String
+    price: Float
     image: String
-    description: String!
+    description: String
   }
 
   type Query {
-    me: Users
     users: [Users]
     user(_id: ID): Users
     services: [Service]
