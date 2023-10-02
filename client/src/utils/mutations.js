@@ -33,7 +33,6 @@ mutation Mutation($email: String!, $password: String!) {
           image
           name
           price
-          serviceId
         }
       }
     }
