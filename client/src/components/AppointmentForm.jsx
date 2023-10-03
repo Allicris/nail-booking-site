@@ -10,10 +10,10 @@ const AppointmentForm = ({ selectedServices, removeService }) => {
     removeService(service);
   };
 
-  const [saveAppointment, { error }] = useMutation(SAVE_APPOINTMENT, {});
+  const [saveAppointment, { error }] = useMutation(SAVE_APPOINTMENT);
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+   // e.preventDefault();
 
     // Validate form inputs (add more validation as needed)
     if (!appointmentDate || !appointmentTime) {
@@ -21,23 +21,39 @@ const AppointmentForm = ({ selectedServices, removeService }) => {
       return;
     }
 
+const formattedServices = selectedServices.map((service) => ([{
+  name: service.name,
+  price: service.price,
+  image: service.image,
+  description: service.description
+}]
+));
+// const formattedServices = {
+//   name: "hello",
+//   price: 24.00,
+//   image: "omage",
+//   description: "today"
+// };
+
+
+//console.log(service.name)
     // Create an appointment object
-    const appointment = {
-      services: selectedServices,
+    const appointmentInput = {
+      services: formattedServices,
       appointmentDate,
       appointmentTime,
     };
-
+//console.log(appointment)
     try {
       const { data } = await saveAppointment({
         variables: {
-          appointment,
-        },
+          appointmentData: appointmentInput,
+          },
       });
       // Clear the form inputs
       setAppointmentDate('');
       setAppointmentTime('');
-      setSelectedServices([]);
+      //setSelectedServices([]);
     } catch (err) {
       console.error(err);
     }
@@ -97,7 +113,7 @@ const AppointmentForm = ({ selectedServices, removeService }) => {
           <label>Selected Services:</label>
           <ul>
             {selectedServices.map((service) => (
-              <li key={service._id} style={listItemStyle}>
+              <li key={service.id} style={listItemStyle}>
                 {service.name}
                 <button style={removeButtonStyle} onClick={() => handleRemoveService(service)}>Remove</button>
               </li>
