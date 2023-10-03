@@ -2,6 +2,9 @@
 
 ## Description
 
+![mock6](https://github.com/Allicris/nail-booking-site/assets/130412307/73e1dd51-f3b3-40da-ae3b-d8acfee21e75)
+
+
 ## Table of Contents
 
 ## User Story
