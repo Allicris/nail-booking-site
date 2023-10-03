@@ -55,12 +55,16 @@ THEN I find that the app uses Redux instead of the Context API
 ## Built With
 ### Project Dependencies:
 
-1. [Node.bcrypt.js](https://www.npmjs.com/package/bcrypt/v/5.0.0) - Version 5.0.0
-2. [Express](https://www.npmjs.com/package/express/v/4.18.2) - Version 4.18.2
-3. [Sequelize](https://www.npmjs.com/package/sequelize/v/6.3.5) - Version 6.3.5
-4. React components
-5. Mongoose
-6. Apollo
+- @apollo/client
+- graphql
+- jwt-decode
+- react
+- react-bootstrap
+- react-datepicker
+- react-dom
+- react-router-dom
+- MongoDB and the Mongoose ODM for the database
+
 
 ## Deployed URL:
  URL Link: 
