@@ -14,7 +14,8 @@ const Services = () => {
   const services = data ? data.services : [];
 
   const addtoAppointment = (service) => {
-    setSelectedServices([...selectedServices, { ...service, id: Date.now() }]);
+//    setSelectedServices([...selectedServices, { ...service, id: Date.now() }]);
+setSelectedServices([...selectedServices, { ...service} ]);
   };
 
   const pageStyle = {
@@ -87,10 +88,10 @@ const Services = () => {
               <AppointmentForm
                 selectedServices={selectedServices}
                 removeService={(serviceToRemove) => {
-                  const updatedServices = selectedServices.filter(
-                    (service) => service.id !== serviceToRemove.id
-                  );
-                  setSelectedServices(updatedServices);
+                  // const updatedServices = selectedServices.filter(
+                  //   (service) => service.id !== serviceToRemove.id
+                  // );
+                  // setSelectedServices(updatedServices);
                 }}
               />
             </div>
