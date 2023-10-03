@@ -11,7 +11,7 @@
 // const { loading, error, data } = useQuery(GET_SERVICES);
 //   if (loading) return <p>Loading...</p>;
 //   if (error) return <p>Error: {error.message}</p>;
- 
+
 // const services = data ? data.services : [];
 
 // const addtoAppointment = (service) => {
@@ -69,7 +69,7 @@ const Services = () => {
   const services = data ? data.services : [];
 
   const addtoAppointment = (service) => {
-    setSelectedServices([...selectedServices, service]);
+    setSelectedServices([...selectedServices, { ...service, id: Date.now() }]);
   };
 
   const pageStyle = {
@@ -111,7 +111,7 @@ const Services = () => {
             <div>
               <h1>Services</h1>
               {services.map((service) => (
-                <div key={service._id} className='services-item'>
+                <div key={service.name} className='services-item'>
                   <Row>
                     <Col xs={4}>
                       <img
@@ -141,7 +141,12 @@ const Services = () => {
             <div style={formStyle}>
               <AppointmentForm
                 selectedServices={selectedServices}
-                setSelectedServices={{ setSelectedServices }}
+                removeService={(serviceToRemove) => {
+                  const updatedServices = selectedServices.filter(
+                    (service) => service.id !== serviceToRemove.id
+                  );
+                  setSelectedServices(updatedServices);
+                }}
               />
             </div>
           </Col>
