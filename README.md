@@ -2,7 +2,13 @@
 
 ## Description
 
-![mock6](https://github.com/Allicris/nail-booking-site/assets/130412307/73e1dd51-f3b3-40da-ae3b-d8acfee21e75)
+# Responsive Ui mockup image 
+![mock6](https://github.com/Allicris/nail-booking-site/assets/130412307/fd4cd853-09d0-41cb-a367-481f5ddb488e)
+
+
+# Gif of the application
+ 
+![Untitled design (2)](https://github.com/Allicris/nail-booking-site/assets/130412307/68a558a5-aa69-4db0-b3ae-f313cb009074)
 
 
 ## Table of Contents
