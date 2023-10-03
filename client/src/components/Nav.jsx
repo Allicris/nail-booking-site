@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import Auth from '../utils/auth';
-import logo from '../assets/images/logo.png'; // Import your logo image
+import logo from '../assets/images/logo.png';
 
 const Navbar = () => {
   const logout = (event) => {
@@ -11,15 +11,15 @@ const Navbar = () => {
   return (
     <header className="bg-black text-white mb-4 py-3 display-flex align-center">
       <div className="container flex-column justify-space-between-lg justify-center align-center text-center">
-        <div style={{ width: '100%' }}> {/* Set width to 100% for the wrapper div */}
+        <div style={{ width: '100%' }}>
           <Link className="text-white" to="/">
-            <img src={logo} alt="M.A.A. Nail Haven Logo" style={{ width: '50%' }} /> {/* Set width to 100% for the logo image */}
+            <img src={logo} alt="M.A.A. Nail Haven Logo" style={{ width: '50%' }} />
           </Link>
         </div>
-        <h1 className="m-0" style={{ fontSize: '3rem' }}>
+        <h1 className="m-0" style={{ fontSize: '3rem', fontFamily: 'Berkshire Swash, cursive' }}>
           M.A.A. Nail Haven
         </h1>
-        <p className="m-0" style={{ fontSize: '1.75rem', fontWeight: '700' }}>
+        <p className="m-0" style={{ fontSize: '1.75rem', fontWeight: '700', fontFamily: 'Berkshire Swash, cursive' }}>
           It's all about nails...
         </p>
         <div>

@@ -1,4 +1,3 @@
-//form for appointment
 import React, { useState } from 'react';
 import { SAVE_APPOINTMENT } from '../utils/mutations';
 import { useMutation } from '@apollo/client';
@@ -45,6 +44,34 @@ const AppointmentForm = ({ selectedServices, removeService }) => {
    }
   };
 
+  // Define styles for the button
+  const buttonStyle = {
+    backgroundColor: '#FF69B4', // Change the button background color
+    color: 'white', // Change the text color
+    border: 'none',
+    borderRadius: '10px',
+    padding: '10px 20px',
+    cursor: 'pointer',
+  };
+
+  // Define styles for the container
+  const containerStyle = {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center', // Center elements horizontally
+  };
+
+  // Define styles for the input fields
+  const inputStyle = {
+    marginBottom: '20px', // Add spacing below each input field
+  };
+
+  // Define styles for the header
+  const headerStyle = {
+    color: 'blue', // Change the header text color to blue
+    fontSize: '24px', // Adjust the font size as needed
+  };
+
   return (
     <div>
       <h2>Schedule an Appointment</h2>
@@ -59,9 +86,9 @@ const AppointmentForm = ({ selectedServices, removeService }) => {
               </li>
 
             ))}
-           </ul> 
+          </ul> 
         </div>
-        <div>
+        <div style={inputStyle}>
           <label>Appointment Date:</label>
           <input
             type="date"
@@ -69,7 +96,7 @@ const AppointmentForm = ({ selectedServices, removeService }) => {
             onChange={(e) => setAppointmentDate(e.target.value)}
           />
         </div>
-        <div>
+        <div style={inputStyle}>
           <label>Appointment Time:</label>
           <input
             type="time"
@@ -86,11 +113,3 @@ const AppointmentForm = ({ selectedServices, removeService }) => {
 };
 
 export default AppointmentForm;
-
-
-
-
-
-
-
-

@@ -11,13 +11,15 @@ const SavedAppointments = () => {
   const [removeAppointment, { error }] = useMutation(REMOVE_APPOINTMENT);
 
   const userData = data?.me || {};
+
   if (!Auth.loggedIn()) {
     return (
-      <h3>
+      <h3 style={{ backgroundColor: 'black', color: 'white', minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
         You must be logged in to view this page.
       </h3>
-    )
+    );
   }
+
   const handleDeleteAppointment = async (appointmentId) => {
     const token = Auth.loggedIn() ? Auth.getToken() : null;
     if (!token) {
@@ -32,28 +34,27 @@ const SavedAppointments = () => {
       console.error(err);
     }
   };
+
   if (loading) {
-    return <h2>LOADING...</h2>;
+    return <h2 style={{ backgroundColor: 'black', color: 'white', minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>LOADING...</h2>;
   }
 
   return (
-    <>
-      <div>
-        <Container>
-          <h1>Your Saved Appointments</h1>
-        </Container>
-      </div>
+    <div style={{ backgroundColor: 'black', minHeight: '100vh' }}>
       <Container>
-        <h2>
+        <h1 style={{ color: 'white' }}>Your Saved Appointments</h1>
+      </Container>
+      <Container>
+        <h2 style={{ color: 'white' }}>
           {userData.savedAppointment && userData.savedAppointment.length
             ? `Viewing ${userData.savedAppointment.length} saved ${userData.savedAppointment.length === 1 ? 'appointment' : 'appointments'}:`
             : 'You have no saved appointments!'}
         </h2>
         <Row>
-          {userData.savedAppointment.map((appointment) => {
+          {userData.savedAppointment && userData.savedAppointment.map((appointment) => {
             return (
-              <Col >
-                <Card key={appointment.appointmentId} >
+              <Col key={appointment.appointmentId}>
+                <Card>
                   <Button onClick={() => handleDeleteAppointment(appointment.appointmentId)}>
                     Delete This Appointment!
                   </Button>
@@ -63,7 +64,7 @@ const SavedAppointments = () => {
           })}
         </Row>
       </Container>
-    </>
+    </div>
   );
 };
 
