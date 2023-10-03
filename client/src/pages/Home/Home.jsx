@@ -1,99 +1,79 @@
-import React, { useState } from 'react';
-import { useQuery } from '@apollo/client';
-import { GET_SERVICES } from '../../utils/queries';
-import { Button, Container, Row, Col } from 'react-bootstrap';
-import AppointmentForm from '../../components/AppointmentForm';
+import React from 'react';
+import serviceImage from '../../assets/images/service-pic.png';
+import creativeNailsImage from '../../assets/images/creativeNails-pic.png';
+import premiumProductImage from '../../assets/images/premiumProduct-pic.png';
 
-const Services = () => {
-  const [selectedServices, setSelectedServices] = useState([]);
-
-  const { loading, error, data } = useQuery(GET_SERVICES);
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error.message}</p>;
-
-  const services = data ? data.services : [];
-
-  const addtoAppointment = (service) => {
-    setSelectedServices([...selectedServices, service]);
-  };
-
-  const pageStyle = {
+function Home() {
+  const containerStyle = {
     backgroundColor: 'black',
     color: 'white',
     padding: '20px',
-    margin: '0',
-    minHeight: '100vh',
-    minWidth: '100vw',
+    textAlign: 'center', // Center-align text
   };
 
-  const columnStyle = {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'space-between',
+  const lightGreyHeaderStyle = {
+    color: 'lightgrey', // Light grey color for section headers
+    fontSize: '30px', // Increase font size
   };
 
-  const servicesColumnStyle = {
-    flex: '1',
+  const blueHeaderStyle = {
+    color: '#66FCF1', // Blue color for specific headers
+    marginTop: '40px', // Add some spacing between sections
   };
 
-  const formColumnStyle = {
-    flexBasis: '300px',
-    marginLeft: '20px',
-  };
-
-  const formStyle = {
-    position: 'sticky',
-    top: '20px',
-    margin: '20px 0',
+  // Define a style for smaller images
+  const smallImageStyle = {
+    maxWidth: '300px', // Adjust the size as needed
   };
 
   return (
-    <>
-      <Container style={pageStyle} className="services-container">
-        <Row>
-          <Col xs={8} style={{ ...columnStyle, ...servicesColumnStyle }}>
-            <div>
-              <h1 style={{ color: 'lightgrey', fontSize: '32px', marginTop: '40px' }}>Services</h1>
-              {services.map((service) => (
-                <div key={service._id} className='services-item'>
-                  <Row>
-                    <Col xs={4}>
-                      <img
-                        src={service.image}
-                        alt={service.name}
-                        width="100"
-                        height="100"
-                      />
-                    </Col>
-                    <Col xs={8}>
-                      <h3 style={{ color: '#66FCF1', marginTop: '20px' }}>{service.name}</h3>
-                      <p>{service.description}</p>
-                      <Button
-                        variant="dark"
-                        onClick={() => addtoAppointment(service)}
-                      >
-                        Add to my Appointment
-                      </Button>
-                    </Col>
-                  </Row>
-                  <hr />
-                </div>
-              ))}
-            </div>
-          </Col>
-          <Col xs={4} style={{ ...columnStyle, ...formColumnStyle }}>
-            <div style={formStyle}>
-              <h2 style={{ color: 'lightgrey', fontSize: '32px' }}>Schedule an Appointment</h2>
-              <AppointmentForm
-                selectedServices={selectedServices}
-                setSelectedServices={{ setSelectedServices }}
-              />
-            </div>
-          </Col>
-        </Row>
-      </Container>
-    </>
+    <div style={containerStyle}>
+      <header>
+        <h1 style={blueHeaderStyle}>Welcome to M.A.A. Nail Haven</h1>
+        <p>Your Premier Nail Services Provider</p>
+      </header>
+      <section>
+        <h2 style={lightGreyHeaderStyle}>Our Mission</h2>
+        <p>We believe that beauty begins at your fingertips. Our mission is to elevate your nail care experience to a whole new level. Whether you're looking for a relaxing manicure, a stunning pedicure, or intricate nail art, we've got you covered.</p>
+      </section>
+      <section>
+        <h2 style={blueHeaderStyle}>Why Choose M.A.A. Nail Haven?</h2>
+        <ul>
+          <li>
+            <h3 style={lightGreyHeaderStyle}>Premium Products</h3>
+            {/* Apply the smallImageStyle to the image */}
+            <img src={premiumProductImage} alt="French tips manicure" style={smallImageStyle} />
+            <p>We use only the highest quality nail products and polishes to pamper your nails. Your safety and satisfaction are our top priorities.</p>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h2 style={blueHeaderStyle}>Our Services</h2>
+        <>
+          {/* Apply the smallImageStyle to the image */}
+          <img src={serviceImage} alt="French tips manicure" style={smallImageStyle} />
+        </>
+        <div>
+          <h3 style={lightGreyHeaderStyle}>Manicures</h3>
+          <p>Treat your hands to a rejuvenating manicure that leaves your nails looking flawless. Choose from a variety of nail shapes, colors, and designs to express your unique style.</p>
+        </div>
+        <div>
+          <h3 style={lightGreyHeaderStyle}>Pedicures</h3>
+          <p>Pamper your feet with a relaxing pedicure that includes exfoliation, nail shaping, and the perfect polish. Feel refreshed from heel to toe.</p>
+        </div>
+        <div>
+          <h3 style={lightGreyHeaderStyle}>Nail Art</h3>
+          {/* Apply the smallImageStyle to the image */}
+          <img src={creativeNailsImage} alt="Creative nail design" style={smallImageStyle} />
+          <p>Elevate your nail game with our creative nail art services. From elegant and understated designs to bold and extravagant masterpieces, our artists can make your nails stand out.</p>
+        </div>
+      </section>
+      <section>
+        <h2 style={blueHeaderStyle}>Book Your Nail Experience Today</h2>
+        <p>Ready to experience the ultimate in nail care? Booking with us is simple and convenient. Just choose your preferred service, select a date and time that works for you, and we'll take care of the rest.</p>
+      </section>
+    </div>
   );
-};
+}
 
-export default Services;
+export default Home;
