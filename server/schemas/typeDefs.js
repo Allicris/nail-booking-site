@@ -49,7 +49,7 @@ const typeDefs = `
     services: [Service]
     userAppointment(_id:ID!):Appointment
     userAppointmentsByIds(_id:[ID]):Appointment
-    removeAppointment(userId: ID!, appointmentId: ID!): User
+    removeAppointment(userId: ID!, appointmentId: ID!): Users
   }
 
   type Mutation {
