@@ -50,7 +50,7 @@ const SavedAppointments = () => {
             : 'You have no saved appointments!'}
         </h2>
         <Row>
-          {userData.savedAppointment.map((appointment) => {
+          {userData.savedAppointment && userData.savedAppointment.map((appointment) => {
             return (
               <Col >
                 <Card key={appointment.appointmentId} >
