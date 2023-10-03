@@ -1,0 +1,38 @@
+[
+    {
+      "appointmentDate": "2023-10-01",
+      "appointmentTime": "15:00",
+      "services": [
+        {
+          "name": "Classic Manicure",
+          "price": 25,
+          "image": "path/to/image1",
+          "description": "Classic manicure, no polish"
+        }
+      ]
+    },
+    {
+      "appointmentDate": "2023-10-02",
+      "appointmentTime": "10:00",
+      "services": [
+        {
+          "name": "Pedicure",
+          "price": 30,
+          "image": "path/to/image2",
+          "description": "Relaxing pedicure with massage"
+        }
+      ]
+    },
+    {
+      "appointmentDate": "2023-10-02",
+      "appointmentTime": "12:00",
+      "services": [
+        {
+          "name": "Nail Art",
+          "price": 15,
+          "image": "path/to/image3",
+          "description": "Creative and artistic nail designs"
+        }
+      ]
+    }
+  ]
