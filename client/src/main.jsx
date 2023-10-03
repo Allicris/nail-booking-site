@@ -11,7 +11,7 @@ import Login from './pages/Login';
 // import Error from './pages/Error';
 import AboutUs from './pages/AboutUs/AboutUs';
 import Services from './pages/Services/Services';
-import SavedAppointments from './pages/savedAppointments';
+import SaveAppointments from './pages/SaveAppointments';
 
 // Create an Apollo Client instance
 const httpLink = createHttpLink({
@@ -62,9 +62,9 @@ const router = createBrowserRouter([
       element: <Services />  
       },
       {
-      path: '/savedAppointments',
+      path: '/saveAppointments',
       // just like in our saved books homework
-      element: <SavedAppointments />
+      element: <SaveAppointments />
       },
     ]
   },

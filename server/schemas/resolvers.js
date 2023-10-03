@@ -4,6 +4,20 @@ const { UserInputError, ApolloError } = require('apollo-server-errors');
 
 const resolvers = {
   Query: {
+    me: async (parent, args, context) => {
+      try {
+
+        if (!context.user) {
+          throw new AuthenticationError('Not authenticated');
+        }
+
+        const user = await Users.findById(context.user._id);
+
+        return user;
+      } catch (error) {
+        throw new ApolloError('Failed to fetch user');
+      }
+    },
     users: async () => {
       try {
         const users = await Users.find();
@@ -33,6 +47,28 @@ const resolvers = {
         throw new Error('Error fetching services');
       }
     },
+    userAppointment: async (parent, { _id }) => {
+      try {
+        const userAppointment = await Appointment.findOne({ _id });
+        if (!userAppointment) {
+          throw new Error('Appointment not found');
+        }
+        return userAppointment;
+      } catch (error) {
+        throw new Error('Failed to fetch user');
+      }
+    },
+    userAppointmentsByIds: async (parent, { ids }) => {
+      try {
+        const userAppointments = await Appointment.find({ _id: { $in: ids } });
+        if (!userAppointments) {
+          throw new Error('No appointments found');
+        }
+        return userAppointments;
+      } catch (error) {
+        throw new Error('Failed to fetch user appointments');
+      }
+    }
   },
 
   Mutation: {
@@ -61,27 +97,33 @@ const resolvers = {
       const token = signToken(user);
       return { token, user };
     },
+    // 
     saveAppointment: async (parent, { appointmentData }, context) => {
       try {
+        // Create the appointment record
         const saveAppointment = await Appointment.create({
           appointmentDate: appointmentData.appointmentDate,
           appointmentTime: appointmentData.appointmentTime,
           services: appointmentData.services,
         });
+    
+        // Update the user's document to include the entire appointment object
         await Users.findOneAndUpdate(
           { _id: context.user._id },
-          { $push: { appointments: saveAppointment._id } },
+          { $push: { appointments: saveAppointment } }, // Push the entire appointment object
           { new: true }
         );
+    
         return saveAppointment;
       } catch (error) {
         if (error.name === 'ValidationError') {
-          const validationErrors = Object.values(error.errors).map(err => err.message);
+          const validationErrors = Object.values(error.errors).map((err) => err.message);
           throw new UserInputError('Validation Error', { validationErrors });
         }
         throw new ApolloError('Internal Server Error');
       }
     },
+
     removeAppointment: async (parent, { userId, appointmentId }) => {
       try {
         const updatedUser = await Users.findOneAndUpdate(
