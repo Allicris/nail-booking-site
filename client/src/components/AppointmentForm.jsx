@@ -13,47 +13,36 @@ const AppointmentForm = ({ selectedServices, removeService }) => {
   const [saveAppointment, { error }] = useMutation(SAVE_APPOINTMENT);
 
   const handleSubmit = async (e) => {
-   // e.preventDefault();
 
-    // Validate form inputs (add more validation as needed)
     if (!appointmentDate || !appointmentTime) {
       alert('Please fill in all fields');
       return;
     }
 
-const formattedServices = selectedServices.map((service) => ([{
-  name: service.name,
-  price: service.price,
-  image: service.image,
-  description: service.description
-}]
-));
-// const formattedServices = {
-//   name: "hello",
-//   price: 24.00,
-//   image: "omage",
-//   description: "today"
-// };
+console.log(selectedServices)
 
-
-//console.log(service.name)
-    // Create an appointment object
-    const appointmentInput = {
-      services: formattedServices,
+    const appointment = {
+      services: selectedServices.map((service) => ({
+        name: service.name,
+        price: service.price,
+        description: service.description
+      })),
       appointmentDate,
       appointmentTime,
     };
-//console.log(appointment)
+    console.log('Appointment Data:', appointment);
+    
     try {
       const { data } = await saveAppointment({
         variables: {
-          appointmentData: appointmentInput,
+          appointmentData: appointment
           },
       });
+      console.log('Mutation Response:', data);
+
       // Clear the form inputs
       setAppointmentDate('');
       setAppointmentTime('');
-      //setSelectedServices([]);
     } catch (err) {
       console.error(err);
     }

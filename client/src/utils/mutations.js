@@ -64,27 +64,3 @@ mutation Mutation($userId: ID!, $appointmentId: ID!) {
   }
 }
 `;
-
-//I don't know if we need this
-// Query to fetch all appointments for a user
-// export const QUERY_USER_APPOINTMENTS = gql`
-//   query userAppointments($userId: ID!) {
-//     userAppointments(userId: $userId) {
-//       _id
-//       appointmentDate
-//       appointmentTime
-//     }
-//   }
-// `;
-
-//I dont know if we need this
-// Query to fetch a single user's profile
-// export const QUERY_USER_PROFILE = gql`
-//   query user($userId: ID!) {
-//     user(userId: $userId) {
-//       _id
-//       name
-//       email
-//     }
-//   }
-// `;

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useQuery } from '@apollo/client';
 import { GET_SERVICES } from '../../utils/queries';
 import { Button, Container, Row, Col } from 'react-bootstrap';
@@ -14,8 +14,8 @@ const Services = () => {
   const services = data ? data.services : [];
 
   const addtoAppointment = (service) => {
-//    setSelectedServices([...selectedServices, { ...service, id: Date.now() }]);
-setSelectedServices([...selectedServices, { ...service} ]);
+    setSelectedServices([...selectedServices, { ...service, id: Date.now() }]);
+    console.log(service)
   };
 
   const pageStyle = {
@@ -88,10 +88,11 @@ setSelectedServices([...selectedServices, { ...service} ]);
               <AppointmentForm
                 selectedServices={selectedServices}
                 removeService={(serviceToRemove) => {
-                  // const updatedServices = selectedServices.filter(
-                  //   (service) => service.id !== serviceToRemove.id
-                  // );
-                  // setSelectedServices(updatedServices);
+                  const updatedServices = selectedServices.filter(
+                    (service) => service.id !== serviceToRemove.id
+                    // (service) => service.id !== serviceToRemove.id
+                  );
+                  setSelectedServices(updatedServices);
                 }}
               />
             </div>

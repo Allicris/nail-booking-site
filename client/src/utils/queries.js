@@ -1,6 +1,5 @@
 import { gql } from '@apollo/client';
 
-// Get Me query needs to be edited for saved appointments
 export const GET_ME = gql`
   query Me {
     me {
@@ -9,6 +8,7 @@ export const GET_ME = gql`
       name
       phone
       appointments {
+        _id
         appointmentDate
         appointmentTime
         services {
@@ -22,6 +22,7 @@ export const GET_ME = gql`
   }
   `;
 
+
 export const GET_SERVICES = gql`
 query Services {
   services {
@@ -32,4 +33,33 @@ query Services {
     image
   }
 }
+`;
+
+export const GET_USER_APPOINTMENT = gql`
+query UserAppointment($id: ID!) {
+  userAppointment(_id: $id) {
+    _id
+    appointmentDate
+    appointmentTime
+    services {
+      name
+      price
+    }
+  }
+}
+`;
+
+export const GET_APPOINTMENTS_BY_IDS = gql`
+  query userAppointmentsByIds($ids: [ID]) {
+    userAppointmentsByIds(ids: $ids) {
+      _id
+      appointmentDate
+      appointmentTime
+      services {
+        description
+        name
+        price
+      }
+    }
+  }
 `;
