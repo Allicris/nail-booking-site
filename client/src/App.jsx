@@ -5,11 +5,14 @@ import Footer from '../src/components/Footer';
 import { Outlet } from 'react-router-dom';
 
 const App = () => {
+  const root = {
+    backgroundColor: 'black'
+  }
+
   return (
-    <div>
+    <div style={root}>
       <Nav />
       <Outlet />
-      {/* The footer is creating a Nav bar at the bottom? */}
       <Footer />
     </div>
   );

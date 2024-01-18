@@ -1,0 +1,7 @@
+.blackbg {
+  background-image: url(../assets/images/blackpattern.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 130%;
+  height: 75vh;
+};

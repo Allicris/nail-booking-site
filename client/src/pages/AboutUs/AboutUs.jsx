@@ -4,8 +4,8 @@ import Footer from '../../components/Footer';
 
 const About = () => {
   const imageStyle = {
-    width: '50%', // Adjust the width as needed
-    height: 'auto', // This will maintain the aspect ratio
+    width: '50%',
+    height: 'auto',
   };
 
   return (
@@ -16,10 +16,8 @@ const About = () => {
         </p>
         <img src={aboutUsImage} alt="Manicure with a red rose" style={imageStyle} />
       </div>
-      {/* <Footer /> Include the Footer component */}
     </>
   );
 };
 
 export default About;
-

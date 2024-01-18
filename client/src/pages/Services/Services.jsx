@@ -46,7 +46,7 @@ const Services = () => {
     position: 'sticky',
     top: '20px',
     padding: '20px',
-    margin: '20px 0', // Add margin to the form element
+    margin: '20px 0',
   };
 
   return (
@@ -55,7 +55,7 @@ const Services = () => {
         <Row>
           <Col xs={8} style={{ ...columnStyle, ...servicesColumnStyle }}>
             <div>
-              <h1 style={{ color: '#66FCF1' }}>Services</h1> {/* Apply color to h1 */}
+              <h1 style={{ color: '#66FCF1' }}>Services</h1>
               {services.map((service) => (
                 <div key={service.name} className='services-item'>
                   <Row>
@@ -68,7 +68,7 @@ const Services = () => {
                       />
                     </Col>
                     <Col xs={8}>
-                      <h3 style={{ color: '#66FCF1' }}>{service.name}</h3> {/* Apply color to h3 */}
+                      <h3 style={{ color: '#66FCF1' }}>{service.name}</h3>
                       <p>{service.description}</p>
                       <Button
                         variant="dark"
@@ -90,7 +90,6 @@ const Services = () => {
                 removeService={(serviceToRemove) => {
                   const updatedServices = selectedServices.filter(
                     (service) => service.id !== serviceToRemove.id
-                    // (service) => service.id !== serviceToRemove.id
                   );
                   setSelectedServices(updatedServices);
                 }}
