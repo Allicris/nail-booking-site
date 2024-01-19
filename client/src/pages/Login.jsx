@@ -61,7 +61,7 @@ const Login = () => {
       <h3>
         <img 
         src={loginPage} 
-        alt="French tips manicure" 
+        alt="log in" 
         style={{maxWidth: "150px"}}
         />
       </h3>

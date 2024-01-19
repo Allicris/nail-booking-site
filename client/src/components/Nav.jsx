@@ -5,6 +5,9 @@ import logIn from "../assets/images/log-in.png";
 import addUser from "../assets/images/add-user.png";
 import nailGlitter from "../assets/images/nailglitter.png";
 import info from "../assets/images/information.png";
+import appointments from "../assets/images/appointments.png";
+import logOut from "../assets/images/logout.png";
+import nailServices from "../assets/images/nailservices.png";
 
 const Navbar = () => {
   const signatureFont = {
@@ -34,7 +37,7 @@ const Navbar = () => {
   };
 
   const xsmImg = {
-    maxWidth: "15px"
+    maxWidth: "17px"
   };
 
   const logout = (event) => {
@@ -74,27 +77,32 @@ const Navbar = () => {
                 style={signatureFont}
                 onClick={logout}
               >
-                Logout
+                <img src={logOut} alt="log out" style={xsmImg} />
+                &nbsp; Logout &nbsp;
               </button>
               <Link
                 className="btn btn-sm btn-light m-2"
                 style={signatureFont}
                 to="/aboutus"
               >
-                About Us
+                <img src={info} alt="about us" style={xsmImg} />
+                &nbsp; About Us
               </Link>
               <Link
                 className="btn btn-sm btn-light m-2"
                 style={signatureFont}
                 to="/services"
               >
-                Services
+                <img src={nailServices} alt="services" style={xsmImg} />
+                &nbsp; Services &nbsp;
               </Link>
               <Link
                 className="btn btn-sm btn-light m-2"
                 style={signatureFont}
                 to="/saveAppointments"
               >
+                <img src={appointments} alt="saved appointments" style={xsmImg} />
+                &nbsp;
                 Saved Appointments
               </Link>
             </>

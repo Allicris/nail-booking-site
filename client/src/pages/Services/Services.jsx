@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import { useQuery } from '@apollo/client';
-import { GET_SERVICES } from '../../utils/queries';
-import { Button, Container, Row, Col } from 'react-bootstrap';
-import AppointmentForm from '../../components/AppointmentForm';
+import React, { useState, useEffect } from "react";
+import { useQuery } from "@apollo/client";
+import { GET_SERVICES } from "../../utils/queries";
+import { Button, Container, Row, Col } from "react-bootstrap";
+import AppointmentForm from "../../components/AppointmentForm";
+import add from "../../assets/images/add.png";
 
 const Services = () => {
   const [selectedServices, setSelectedServices] = useState([]);
@@ -15,72 +16,101 @@ const Services = () => {
 
   const addtoAppointment = (service) => {
     setSelectedServices([...selectedServices, { ...service, id: Date.now() }]);
-    console.log(service)
+    console.log(service);
   };
 
   const pageStyle = {
-    backgroundColor: 'black',
-    color: 'white',
-    padding: '20px',
-    margin: '0',
-    minHeight: '100vh',
-    minWidth: '100vw',
+    padding: "20px",
+    margin: "0",
+    minHeight: "100vh",
+    minWidth: "100vw",
   };
 
   const columnStyle = {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'space-between',
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "space-between",
   };
 
   const servicesColumnStyle = {
-    flex: '1',
+    flex: "1",
   };
 
   const formColumnStyle = {
-    flexBasis: '300px',
-    marginLeft: '20px',
+    flexBasis: "300px",
+    marginLeft: "20px",
   };
 
   const formStyle = {
-    position: 'sticky',
-    top: '20px',
-    padding: '20px',
-    margin: '20px 0',
+    position: "sticky",
+    top: "20px",
+    padding: "20px",
+    margin: "20px 0",
   };
+
+  const headerStyle = {
+    fontFamily: "DM Sans, serif",
+    fontWeight: "550",
+    color: "black",
+    textShadow: "3px 2px 3px #676666",
+    margin: "10px",
+    padding: "40px",
+    textAlign: "center",
+  };
+
+  const pinkHeaderStyle = {
+    fontFamily: "Roboto, serif",
+    color: "#black",
+    fontSize: "30px",
+    margin: "50px",
+  };
+
+  const xsmImg = {
+    maxWidth: "17px",
+  };
+
+  const background = {
+    backgroundColor: "#FDCBDD",
+    borderRadius: "55px",
+  }
 
   return (
     <>
+    <div>
       <Container style={pageStyle} className="services-container">
         <Row>
           <Col xs={8} style={{ ...columnStyle, ...servicesColumnStyle }}>
-            <div>
-              <h1 style={{ color: '#66FCF1' }}>Services</h1>
-              {services.map((service) => (
-                <div key={service.name} className='services-item'>
-                  <Row>
-                    <Col xs={4}>
-                      <img
-                        src={service.image}
-                        alt={service.name}
-                        width="210"
-                        height="200"
-                      />
-                    </Col>
-                    <Col xs={8}>
-                      <h3 style={{ color: '#66FCF1' }}>{service.name}</h3>
-                      <p>{service.description}</p>
-                      <Button
-                        variant="dark"
-                        onClick={() => addtoAppointment(service)}
-                      >
-                        Add to my Appointment
-                      </Button>
-                    </Col>
-                  </Row>
-                  <hr />
-                </div>
-              ))}
+            <div style={background}>
+              <h1 style={headerStyle}>SERVICES</h1>
+              <div style={pinkHeaderStyle}>
+                {services.map((service) => (
+                  <div key={service.name} className="services-item">
+                    <Row>
+                      <Col xs={4}>
+                        <img
+                          src={service.image}
+                          alt={service.name}
+                          width="210"
+                          height="200"
+                        />
+                      </Col>
+                      <Col xs={8}>
+                        <h3 style={{ fontFamily: "Playfair Display", textShadow: "2px 2px 2px grey"}}>{service.name}</h3>
+                        <p> {service.description}</p>
+                        <Button
+                        style={{cursor: "pointer"}}
+                          variant="dark"
+                          onClick={() => addtoAppointment(service)}
+                        >
+                          <img src={add} alt="add" style={xsmImg} />
+                          &nbsp; Add To My Appointment
+                        </Button>
+                      </Col>
+                    </Row>
+                    <hr />
+                  </div>
+                ))}
+              </div>
             </div>
           </Col>
           <Col xs={4} style={{ ...columnStyle, ...formColumnStyle }}>
@@ -98,6 +128,7 @@ const Services = () => {
           </Col>
         </Row>
       </Container>
+      </div>
     </>
   );
 };

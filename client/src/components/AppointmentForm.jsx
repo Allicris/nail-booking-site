@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { SAVE_APPOINTMENT } from "../utils/mutations";
 import { useMutation } from "@apollo/client";
+import trash from "../assets/images/trash.png";
 
 const AppointmentForm = ({ selectedServices, removeService }) => {
   const [appointmentDate, setAppointmentDate] = useState("");
@@ -48,83 +49,102 @@ const AppointmentForm = ({ selectedServices, removeService }) => {
     }
   };
 
-  const buttonStyle = {
-    backgroundColor: "#FC8EAC",
-    color: "white",
-    border: "none",
-    borderRadius: "10px",
-    padding: "10px 20px",
-    cursor: "pointer",
-  };
-
-  const containerStyle = {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-  };
-
-  const inputStyle = {
-    marginBottom: "20px",
-  };
-
   const headerStyle = {
-    color: "#66FCF1",
-    fontSize: "24px",
+    fontFamily: "Playfair Display, serif",
+    color: "#C75048",
+    margin: "50px",
+    padding: "40px",
+    textAlign: "center",
   };
 
-  const removeButtonStyle = {
-    backgroundColor: "#FC8EAC",
+  const pinkHeaderStyle = {
+    fontFamily: "DM Sans, serif",
+    color: "#black",
+    fontSize: "15px",
+    margin: "35px",
+  };
+
+  const background = {
+    backgroundColor: "#FFB395",
+    borderRadius: "25px",
+  }
+
+  const submitBtn = {
+    backgroundColor: "#C75048",
     color: "white",
-    border: "none",
-    borderRadius: "5px",
-    padding: "5px 10px",
-    cursor: "pointer",
+    padding: "12px",
+    margin: "25px",
+    borderRadius: "20px",
+    cursor: "pointer"
+  }
+
+  const removeBtn = {
+    backgroundColor: "#FFDCE6",
+    padding: "8px",
+    borderRadius: "20px",
+    borderColor: "#FFDCE6",
+    margin: "10px",
+    cursor: "pointer"
+  }
+
+  const input = {
+    borderRadius: "10px",
+    padding: "8px",
+    backgroundColor: "#FFDCE6"
+  }
+
+  const listItems = {
+    fontFamily: "Playfair Display, serif",
+    padding: "10px",
+    listStyle: "none",
+    fontSize: "15px",
+    color: "black",
   };
 
-  const listItemStyle = {
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center",
+  const xsmImg = {
+    maxWidth: "17px",
   };
 
   return (
-    <div>
-      <h2 style={headerStyle}>Schedule an Appointment</h2>
+    <div style={background}>
+      <h2 style={{ ...headerStyle, textShadow: "1px 1px 1px white"}}> Schedule your appointment!</h2>
       <form>
-        <div>
-          <label>Selected Services:</label>
-          <ul>
+        <div style={pinkHeaderStyle}>
+          <label style={{fontFamily: "Playfair Display", fontSize: "25px"}}>Selected Services:</label>
+          <ul style={listItems}>
             {selectedServices.map((service) => (
-              <li key={service.id} style={listItemStyle}>
+              <li key={service.id}>
                 {service.name}
                 <button
-                  style={removeButtonStyle}
+                style={removeBtn}
                   onClick={() => handleRemoveService(service)}
                 >
-                  Remove
+                <img src={trash} alt="trash" style={xsmImg} />
                 </button>
               </li>
             ))}
           </ul>
         </div>
-        <div style={inputStyle}>
-          <label>Appointment Date:</label>
+        <div style={{...pinkHeaderStyle, paddingTop: "10px"}}>
+          <label style={{paddingBottom: "10px"}}>Appointment Date:</label>
           <input
+          style={{ ...input, cursor: "pointer"}}
             type="date"
             value={appointmentDate}
             onChange={(e) => setAppointmentDate(e.target.value)}
           />
         </div>
-        <div style={inputStyle}>
-          <label>Appointment Time:</label>
+        <div style={pinkHeaderStyle}>
+          <label style={{paddingBottom: "10px"}}>Appointment Time:</label>
           <input
+          style={{ ...input, cursor: "pointer"}}
             type="time"
             value={appointmentTime}
             onChange={(e) => setAppointmentTime(e.target.value)}
           />
         </div>
-        <div>
-          <button style={buttonStyle} onClick={handleSubmit}>
+        <div style={pinkHeaderStyle}>
+          <button style={submitBtn} onClick={handleSubmit}>
             Schedule Appointment
           </button>
         </div>
