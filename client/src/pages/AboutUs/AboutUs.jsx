@@ -1,20 +1,38 @@
 import React from 'react';
-import aboutUsImage from '../../assets/images/aboutUs-image.png';
-import Footer from '../../components/Footer';
+import spa from '../../assets/images/spa.png';
+import lotus from "../../assets/images/lotus.png";
 
 const About = () => {
   const imageStyle = {
-    width: '50%',
+    width: '40%',
     height: 'auto',
+  };
+
+  const textImage = {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    padding: "100px",
+    textAlign: "center",
+    color: "#F75E8A",
+    fontFamily: "DM Sans, sans-serif",
+    background: "#232323"
+  };
+
+  const xsmImg = {
+    maxWidth: "50px",
   };
 
   return (
     <>
-      <div className="about-section bg-black text-white">
-        <p>
-          At our nail salon, we embrace a holistic approach to enhance your health and beauty. Our dedicated team collaborates closely with clients, focusing on a personal level to bring their vision of a radiant image to life. Our commitment revolves around achieving perfection not only in the quality of our nail services but also in the exceptional customer experience we deliver.
+      <div style={textImage}>
+        <img src={spa} alt="Manicure with a red rose" style={imageStyle} />
+        <p style={{fontSize: "25px"}}>
+        <img src={lotus} alt="lotus" style={xsmImg} />
+        <br></br>
+        <br></br>
+          At our nail salon, we <new style={{color: "#FDBACD"}}>EMBRACE</new> a holistic approach to enhance your health and beauty. Our <new style={{color: "white"}}>DEDICATED</new> team collaborates closely with clients, focusing on a personal level to bring their vision of a <new style={{color: "#FDBACD"}}>RADIANT</new> image to life. Our commitment revolves around achieving <new style={{color: "white"}}>PERFECTION</new>, not only in the quality of our nail services but also in the exceptional <new style={{color: "#FDBACD"}}>CUSTOMER EXPERIENCE</new> we deliver.
         </p>
-        <img src={aboutUsImage} alt="Manicure with a red rose" style={imageStyle} />
       </div>
     </>
   );

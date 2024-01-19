@@ -24,7 +24,7 @@ const Footer = () => {
 
   return (
     <div className="text-white text-center d-flex flex-column align-items-center">
-      <p style={shadow}>We accept all major credit cards</p>
+      <p style={{ ...shadow, paddingTop: "20px"}}>We accept all major credit cards</p>
       <div className="d-flex flex-row" style={{ margin: "auto" }}>
         {creditCardTypes.map((cardType, index) => (
           <div key={index}>

@@ -1,6 +1,10 @@
 import { Link } from "react-router-dom";
 import Auth from "../utils/auth";
 import logo from "../assets/images/logo.png";
+import logIn from "../assets/images/log-in.png";
+import addUser from "../assets/images/add-user.png";
+import nailGlitter from "../assets/images/nailglitter.png";
+import info from "../assets/images/information.png";
 
 const Navbar = () => {
   const signatureFont = {
@@ -29,6 +33,10 @@ const Navbar = () => {
     margin: "50px",
   };
 
+  const xsmImg = {
+    maxWidth: "15px"
+  };
+
   const logout = (event) => {
     event.preventDefault();
     Auth.logout();
@@ -55,6 +63,7 @@ const Navbar = () => {
           </h1>
           <p className="m-0" style={{fontStyle: "italic", ...signatureFont, ...pinkHeaderStyle, paddingBottom: '70px' }}>
             It's all about nails . . .
+            <img src={nailGlitter} alt="about us" style={{ maxWidth: "50px"}} />
           </p>
         </div>
         <div className="d-flex flex-column" style={marginTop}>
@@ -96,21 +105,24 @@ const Navbar = () => {
                 style={signatureFont}
                 to="/aboutus"
               >
-                About Us
+                <img src={info} alt="about us" style={xsmImg} />
+                &nbsp; About Us
               </Link>
               <Link
                 className="btn btn-sm btn-light m-2"
                 style={signatureFont}
                 to="/login"
               >
-                Login
+                <img src={logIn} alt="about us" style={xsmImg} />
+                &nbsp; Login &nbsp;
               </Link>
               <Link
                 className="btn btn-sm btn-light m-2"
                 style={signatureFont}
                 to="/signup"
               >
-                Signup
+                <img src={addUser} alt="about us" style={xsmImg} />
+               &nbsp; Signup
               </Link>
             </>
           )}
