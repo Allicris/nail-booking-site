@@ -1,11 +1,31 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { useMutation } from '@apollo/client';
-import { LOGIN_USER } from '../utils/mutations';
-import Auth from '../utils/auth';
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { useMutation } from "@apollo/client";
+import { LOGIN_USER } from "../utils/mutations";
+import Auth from "../utils/auth";
+import loginPage from "../assets/images/loginpage.png";
 
 const Login = () => {
-  const [formState, setFormState] = useState({ email: '', password: '' });
+  const containerStyle = {
+    fontFamily: "DM Sans, serif",
+    color: "white",
+    padding: "20px",
+    paddingLeft: "175px",
+    paddingRight: "175px",
+    paddingBottom: "90px",
+    textAlign: "center",
+  };
+
+  const submitBtn = {
+    background: "#F133B9",
+    color: "white",
+    borderRadius: "25px",
+    cursor: "pointer",
+    margin: "30px",
+    padding: "10px"
+  }
+
+  const [formState, setFormState] = useState({ email: "", password: "" });
   const [login, { error, data }] = useMutation(LOGIN_USER);
 
   const handleChange = (event) => {
@@ -31,61 +51,53 @@ const Login = () => {
     }
 
     setFormState({
-      email: '',
-      password: '',
+      email: "",
+      password: "",
     });
   };
 
   return (
-    <main className="flex-row justify-center mb-4" style={{ backgroundColor: 'black', color: 'white' }}>
-      <div className="col-12 col-lg-10">
-        <div className="card">
-          <h4 className="card-header bg-dark text-light p-2">Login</h4>
-          <div className="card-body">
-            {data ? (
-              <p>
-                Success! You may now head{' '}
-                <Link to="/">back to the homepage.</Link>
-              </p>
-            ) : (
-              <form onSubmit={handleFormSubmit}>
-                <input
-                  className="form-input"
-                  placeholder="Your email"
-                  name="email"
-                  type="email"
-                  value={formState.email}
-                  onChange={handleChange}
-                />
-                <input
-                  className="form-input"
-                  placeholder="******"
-                  name="password"
-                  type="password"
-                  value={formState.password}
-                  onChange={handleChange}
-                />
-                <button
-                  className="btn btn-block btn-primary"
-                  style={{ cursor: 'pointer' }}
-                  type="submit"
-                >
-                  Submit
-                </button>
-              </form>
-            )}
+    <div style={containerStyle}>
+      <h3>
+        <img 
+        src={loginPage} 
+        alt="French tips manicure" 
+        style={{maxWidth: "150px"}}
+        />
+      </h3>
+      <div>
+        {data ? (
+          <p>
+            Success! You may now head <Link to="/">back to the homepage.</Link>
+          </p>
+        ) : (
+          <form onSubmit={handleFormSubmit}>
+            <input
+              className="form-input"
+              placeholder="Email"
+              name="email"
+              type="email"
+              value={formState.email}
+              onChange={handleChange}
+            />
+            <input
+              className="form-input"
+              placeholder="******"
+              name="password"
+              type="password"
+              value={formState.password}
+              onChange={handleChange}
+            />
+            <button style={submitBtn} type="submit">
+              Submit
+            </button>
+          </form>
+        )}
 
-            {error && (
-              <div className="my-3 p-3 bg-danger text-white">
-                {error.message}
-              </div>
-            )}
-          </div>
-        </div>
+        {error && <div>{error.message}</div>}
       </div>
-    </main>
+    </div>
   );
 };
 
 export default Login;
-
