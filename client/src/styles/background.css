@@ -5,3 +5,8 @@
   background-size: 140%;
   height: 67vh;
 }
+
+.removeBtn {
+  background-color: black;
+  padding: 20px;
+}

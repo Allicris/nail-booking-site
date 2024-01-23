@@ -16,7 +16,10 @@ const About = () => {
     textAlign: "center",
     color: "#F75E8A",
     fontFamily: "DM Sans, sans-serif",
-    background: "#232323"
+    background: "#232323",
+    borderRadius: "10px",
+    margin: "30px",
+    boxShadow: "2px 2px 15px grey"
   };
 
   const xsmImg = {

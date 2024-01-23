@@ -1,6 +1,7 @@
 import React from 'react';
 import { useMutation } from '@apollo/client';
 import { REMOVE_APPOINTMENT } from '../utils/mutations';
+import trash from "../assets/images/trash.png";
 
 const RemoveAppointmentButton = ({ userId, appointmentId }) => {
   const [removeAppointment] = useMutation(REMOVE_APPOINTMENT);
@@ -20,12 +21,14 @@ const RemoveAppointmentButton = ({ userId, appointmentId }) => {
   };
 
   return (
+    <div>
     <button
       onClick={handleRemoveAppointment}
-      style={{ backgroundColor: '#FC8EAC', color: 'white' }}
-    >
-      Remove Appointment
+      style={{ borderColor: "#C77089", borderRadius: "10px", backgroundColor: 'white', color: 'black' }}>
+      Cancel Appointment &nbsp; 
+      <img src={trash} alt="trash" style={{maxWidth: "15px"}} />
     </button>
+    </div>
   );
 };
 
