@@ -67,7 +67,7 @@ THEN I find that the app uses Redux instead of the Context API
 
 
 ## Deployed URL:
- URL Link: 
+ URL Link: https://nail-booking-site-285746c99724.herokuapp.com
 
 ## Continued Development:
 1. Establishing a Profile and Settings page where the user can manage their scheduled appointments 
