@@ -3,7 +3,11 @@ import { SAVE_APPOINTMENT } from "../utils/mutations";
 import { useMutation } from "@apollo/client";
 import trash from "../assets/images/trash.png";
 
-const AppointmentForm = ({ selectedServices, removeService }) => {
+const AppointmentForm = ({
+  selectedServices,
+  removeService,
+  clearSelectedServices,
+}) => {
   const [appointmentDate, setAppointmentDate] = useState("");
   const [appointmentTime, setAppointmentTime] = useState("");
 
@@ -15,14 +19,12 @@ const AppointmentForm = ({ selectedServices, removeService }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+
     if (!appointmentDate || !appointmentTime) {
       alert("Please fill in all fields");
       return;
     }
-  
-    console.log(selectedServices);
-  
+
     const appointment = {
       services: selectedServices.map((service) => ({
         name: service.name,
@@ -32,25 +34,25 @@ const AppointmentForm = ({ selectedServices, removeService }) => {
       appointmentDate,
       appointmentTime,
     };
-    console.log("Appointment Data:", appointment);
-  
+
     try {
       const { data } = await saveAppointment({
         variables: {
           appointmentData: appointment,
         },
       });
-      console.log("Mutation Response:", data);
-  
+
+      clearSelectedServices();
       setAppointmentDate("");
       setAppointmentTime("");
+      alert("Your appointment has been booked! See you soon ✨");
     } catch (err) {
       console.error(err);
     }
   };
 
   const headerStyle = {
-    fontFamily: "Playfair Display, serif",
+    fontFamily: "'Playfair Display', serif",
     color: "#C75048",
     margin: "50px",
     padding: "40px",
@@ -58,7 +60,7 @@ const AppointmentForm = ({ selectedServices, removeService }) => {
   };
 
   const pinkHeaderStyle = {
-    fontFamily: "DM Sans, serif",
+    fontFamily: "'DM Sans', serif",
     color: "#black",
     fontSize: "15px",
     margin: "35px",
@@ -67,7 +69,7 @@ const AppointmentForm = ({ selectedServices, removeService }) => {
   const background = {
     backgroundColor: "#FFB395",
     borderRadius: "25px",
-  }
+  };
 
   const submitBtn = {
     backgroundColor: "#C75048",
@@ -75,8 +77,8 @@ const AppointmentForm = ({ selectedServices, removeService }) => {
     padding: "12px",
     margin: "25px",
     borderRadius: "20px",
-    cursor: "pointer"
-  }
+    cursor: "pointer",
+  };
 
   const removeBtn = {
     backgroundColor: "#FFDCE6",
@@ -84,17 +86,17 @@ const AppointmentForm = ({ selectedServices, removeService }) => {
     borderRadius: "20px",
     borderColor: "#FFDCE6",
     margin: "10px",
-    cursor: "pointer"
-  }
+    cursor: "pointer",
+  };
 
   const input = {
     borderRadius: "10px",
     padding: "8px",
-    backgroundColor: "#FFDCE6"
-  }
+    backgroundColor: "#FFDCE6",
+  };
 
   const listItems = {
-    fontFamily: "Playfair Display, serif",
+    fontFamily: "'Playfair Display', serif",
     padding: "10px",
     listStyle: "none",
     fontSize: "15px",
@@ -107,37 +109,42 @@ const AppointmentForm = ({ selectedServices, removeService }) => {
 
   return (
     <div style={background}>
-      <h2 style={{ ...headerStyle, textShadow: "1px 1px 1px white"}}> Schedule your appointment!</h2>
+      <h2 style={{ ...headerStyle, textShadow: "1px 1px 1px white" }}>
+        {" "}
+        Schedule your appointment!
+      </h2>
       <form>
         <div style={pinkHeaderStyle}>
-          <label style={{fontFamily: "Playfair Display", fontSize: "25px"}}>Selected Services:</label>
+          <label style={{ fontFamily: "Playfair Display", fontSize: "25px" }}>
+            Selected Services:
+          </label>
           <ul style={listItems}>
             {selectedServices.map((service) => (
               <li key={service.id}>
                 {service.name}
                 <button
-                style={removeBtn}
+                  style={removeBtn}
                   onClick={() => handleRemoveService(service)}
                 >
-                <img src={trash} alt="trash" style={xsmImg} />
+                  <img src={trash} alt="trash" style={xsmImg} />
                 </button>
               </li>
             ))}
           </ul>
         </div>
-        <div style={{...pinkHeaderStyle, paddingTop: "10px"}}>
-          <label style={{paddingBottom: "10px"}}>Appointment Date:</label>
+        <div style={{ ...pinkHeaderStyle, paddingTop: "10px" }}>
+          <label style={{ paddingBottom: "10px" }}>Appointment Date:</label>
           <input
-          style={{ ...input, cursor: "pointer"}}
+            style={{ ...input, cursor: "pointer" }}
             type="date"
             value={appointmentDate}
             onChange={(e) => setAppointmentDate(e.target.value)}
           />
         </div>
         <div style={pinkHeaderStyle}>
-          <label style={{paddingBottom: "10px"}}>Appointment Time:</label>
+          <label style={{ paddingBottom: "10px" }}>Appointment Time:</label>
           <input
-          style={{ ...input, cursor: "pointer"}}
+            style={{ ...input, cursor: "pointer" }}
             type="time"
             value={appointmentTime}
             onChange={(e) => setAppointmentTime(e.target.value)}
