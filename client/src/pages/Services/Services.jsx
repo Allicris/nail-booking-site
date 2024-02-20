@@ -14,8 +14,8 @@ const Services = () => {
 
   const services = data ? data.services : [];
 
-  const addtoAppointment = (service) => {
-    setSelectedServices([...selectedServices, { ...service, id: Date.now() }]);
+  const addtoAppointment = (services) => {
+    setSelectedServices([...selectedServices, { ...services, id: Date.now() }]);
   };
 
   const clearSelectedServices = () => {
@@ -86,24 +86,24 @@ const Services = () => {
             <div style={background}>
               <h1 style={headerStyle}>SERVICES</h1>
               <div style={pinkHeaderStyle}>
-                {services.map((service) => (
-                  <div key={service.name} >
+                {services.map((services) => (
+                  <div key={services.name} >
                     <Row>
                       <Col xs={4}>
                         <img
-                          src={service.image}
-                          alt={service.name}
+                          src={services.image}
+                          alt={services.name}
                           width="210"
                           height="200"
                         />
                       </Col>
                       <Col xs={8}>
-                        <h3 style={{ fontFamily: "Playfair Display", textShadow: "2px 2px 2px grey"}}>{service.name}</h3>
-                        <p> {service.description}</p>
+                        <h3 style={{ fontFamily: "Playfair Display", textShadow: "2px 2px 2px grey"}}>{services.name}</h3>
+                        <p> {services.description}</p>
                         <Button
                         style={{cursor: "pointer"}}
                           variant="dark"
-                          onClick={() => addtoAppointment(service)}
+                          onClick={() => addtoAppointment(services)}
                         >
                           <img src={add} alt="add" style={xsmImg} />
                           &nbsp; Add To My Appointment
@@ -123,7 +123,7 @@ const Services = () => {
                 clearSelectedServices={clearSelectedServices}
                 removeService={(serviceToRemove) => {
                   const updatedServices = selectedServices.filter(
-                    (service) => service.id !== serviceToRemove.id
+                    (services) => services.id !== serviceToRemove.id
                   );
                   setSelectedServices(updatedServices);
                 }}
