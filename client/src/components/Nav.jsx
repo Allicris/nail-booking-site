@@ -11,7 +11,7 @@ import nailServices from "../assets/images/nailservices.png";
 
 const Navbar = () => {
   const signatureFont = {
-    fontFamily: "Playfair Display, serif",
+    fontFamily: "'Playfair Display', serif",
     fontWeight: "400",
     color: "#FD5C7E",
   };
@@ -22,22 +22,23 @@ const Navbar = () => {
   };
 
   const marginTop = {
-    marginTop: "20px"
-  }
+    marginTop: "20px",
+  };
 
   const marginBottom = {
-    marginBottom: "40px"
-  }
+    marginBottom: "40px",
+  };
 
   const pinkHeaderStyle = {
-    fontFamily: "Roboto, serif",
+    fontFamily: "'Roboto', sans-serif",
+    fontWeight: "100",
     color: "#FDAABD",
     fontSize: "30px",
     margin: "50px",
   };
 
   const xsmImg = {
-    maxWidth: "17px"
+    maxWidth: "17px",
   };
 
   const logout = (event) => {
@@ -47,12 +48,15 @@ const Navbar = () => {
 
   return (
     <header>
-      <div className="img-fluid text-center" style={{ width: "100%", ...marginBottom }}>
+      <div
+        className="img-fluid text-center"
+        style={{ width: "100%", ...marginBottom }}
+      >
         <Link className="text-white" to="/">
           <img
             src={logo}
             alt="M.A.A. Nail Haven Logo"
-            style={{ width: "50%", paddingTop: '50px' }}
+            style={{ width: "50%", paddingTop: "50px" }}
           />
         </Link>
       </div>
@@ -60,13 +64,29 @@ const Navbar = () => {
         <div>
           <h1
             className="text-white m-9"
-            style={{ fontSize: "4rem", fontFamily: "Playfair Display, serif", ...marginBottom }}
+            style={{
+              fontSize: "4rem",
+              fontFamily: "'Playfair Display', serif",
+              ...marginBottom,
+            }}
           >
             M.A.A. Nail Haven
           </h1>
-          <p className="m-0" style={{fontStyle: "italic", ...signatureFont, ...pinkHeaderStyle, paddingBottom: '70px' }}>
+          <p
+            className="m-0"
+            style={{
+              fontStyle: "italic",
+              ...signatureFont,
+              ...pinkHeaderStyle,
+              paddingBottom: "70px",
+            }}
+          >
             It's all about nails . . .
-            <img src={nailGlitter} alt="about us" style={{ maxWidth: "50px"}} />
+            <img
+              src={nailGlitter}
+              alt="about us"
+              style={{ maxWidth: "50px" }}
+            />
           </p>
         </div>
         <div className="d-flex flex-column" style={marginTop}>
@@ -101,9 +121,12 @@ const Navbar = () => {
                 style={signatureFont}
                 to="/saveAppointments"
               >
-                <img src={appointments} alt="saved appointments" style={xsmImg} />
-                &nbsp;
-                Saved Appointments
+                <img
+                  src={appointments}
+                  alt="saved appointments"
+                  style={xsmImg}
+                />
+                &nbsp; Saved Appointments
               </Link>
             </>
           ) : (
@@ -130,7 +153,7 @@ const Navbar = () => {
                 to="/signup"
               >
                 <img src={addUser} alt="about us" style={xsmImg} />
-               &nbsp; Signup
+                &nbsp; Signup
               </Link>
             </>
           )}

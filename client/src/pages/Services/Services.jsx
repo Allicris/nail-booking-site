@@ -16,8 +16,11 @@ const Services = () => {
 
   const addtoAppointment = (service) => {
     setSelectedServices([...selectedServices, { ...service, id: Date.now() }]);
-    console.log(service);
   };
+
+  const clearSelectedServices = () => {
+    setSelectedServices([]);
+  }
 
   const pageStyle = {
     padding: "20px",
@@ -49,7 +52,7 @@ const Services = () => {
   };
 
   const headerStyle = {
-    fontFamily: "DM Sans, serif",
+    fontFamily: "'DM Sans', serif",
     fontWeight: "550",
     color: "black",
     textShadow: "3px 2px 3px #676666",
@@ -59,7 +62,7 @@ const Services = () => {
   };
 
   const pinkHeaderStyle = {
-    fontFamily: "Roboto, serif",
+    fontFamily: "'Roboto', serif",
     color: "#black",
     fontSize: "30px",
     margin: "50px",
@@ -77,14 +80,14 @@ const Services = () => {
   return (
     <>
     <div>
-      <Container style={pageStyle} className="services-container">
+      <Container style={pageStyle} >
         <Row>
           <Col xs={8} style={{ ...columnStyle, ...servicesColumnStyle }}>
             <div style={background}>
               <h1 style={headerStyle}>SERVICES</h1>
               <div style={pinkHeaderStyle}>
                 {services.map((service) => (
-                  <div key={service.name} className="services-item">
+                  <div key={service.name} >
                     <Row>
                       <Col xs={4}>
                         <img
@@ -117,6 +120,7 @@ const Services = () => {
             <div style={formStyle}>
               <AppointmentForm
                 selectedServices={selectedServices}
+                clearSelectedServices={clearSelectedServices}
                 removeService={(serviceToRemove) => {
                   const updatedServices = selectedServices.filter(
                     (service) => service.id !== serviceToRemove.id

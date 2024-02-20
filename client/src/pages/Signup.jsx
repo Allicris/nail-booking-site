@@ -7,7 +7,7 @@ import signupPage from "../assets/images/signuppage.png";
 
 const Signup = () => {
   const containerStyle = {
-    fontFamily: "DM Sans, serif",
+    fontFamily: "'DM Sans', serif",
     color: "white",
     padding: "20px",
     paddingLeft: "175px",

@@ -29,13 +29,13 @@ const About = () => {
   return (
     <>
       <div style={textImage}>
-        <img src={spa} alt="Manicure with a red rose" style={imageStyle} />
-        <p style={{fontSize: "25px"}}>
+        <img src={spa} alt="Spa" style={imageStyle} />
+        <div style={{fontSize: "25px"}}>
         <img src={lotus} alt="lotus" style={xsmImg} />
         <br></br>
         <br></br>
-          At our nail salon, we <new style={{color: "#FDBACD"}}>EMBRACE</new> a holistic approach to enhance your health and beauty. Our <new style={{color: "white"}}>DEDICATED</new> team collaborates closely with clients, focusing on a personal level to bring their vision of a <new style={{color: "#FDBACD"}}>RADIANT</new> image to life. Our commitment revolves around achieving <new style={{color: "white"}}>PERFECTION</new>, not only in the quality of our nail services but also in the exceptional <new style={{color: "#FDBACD"}}>CUSTOMER EXPERIENCE</new> we deliver.
-        </p>
+          At our nail salon, we <span style={{color: "#FDBACD"}}>EMBRACE</span> a holistic approach to enhance your health and beauty. Our <span style={{color: "white"}}>DEDICATED</span> team collaborates closely with clients, focusing on a personal level to bring their vision of a <span style={{color: "#FDBACD"}}>RADIANT</span> image to life. Our commitment revolves around achieving <span style={{color: "white"}}>PERFECTION</span>, not only in the quality of our nail services but also in the exceptional <span style={{color: "#FDBACD"}}>CUSTOMER EXPERIENCE</span> we deliver.
+        </div>
       </div>
     </>
   );

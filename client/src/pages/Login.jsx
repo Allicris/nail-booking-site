@@ -7,7 +7,7 @@ import loginPage from "../assets/images/loginpage.png";
 
 const Login = () => {
   const containerStyle = {
-    fontFamily: "DM Sans, serif",
+    fontFamily: "'DM Sans', serif",
     color: "white",
     padding: "20px",
     paddingLeft: "175px",

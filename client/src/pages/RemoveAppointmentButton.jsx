@@ -14,7 +14,7 @@ const RemoveAppointmentButton = ({ userId, appointmentId }) => {
           appointmentId,
         },
       });
-      console.log('Remove Appointment response:', data);
+      window.location.reload();
     } catch (error) {
       console.error('Error removing appointment:', error.message);
     }

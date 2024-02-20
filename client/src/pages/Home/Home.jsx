@@ -9,7 +9,7 @@ import "../../styles/background.css";
 
 function Home() {
   const headerText = {
-    fontFamily: "Playfair Display, serif",
+    fontFamily: "'Playfair Display', serif",
     fontWeight: "550",
     color: "#FD5C7E",
     textShadow: "2px 2px 2px #3C3B3B",
@@ -36,7 +36,8 @@ function Home() {
   };
 
   const pinkHeaderStyle = {
-    fontFamily: "Roboto, serif",
+    fontFamily: "'Roboto', sans-serif",
+    fontWeight: "100",
     color: "#FDAABD",
     fontSize: "30px",
     margin: "50px",
@@ -70,7 +71,7 @@ function Home() {
         <h2 style={headerText}>Our Mission</h2>
         <br></br>
         <p
-          style={{ paddingBottom: "100px", fontFamily: "DM Sans, sans-serif" }}
+          style={{ paddingBottom: "100px", fontFamily: "'DM Sans', sans-serif" }}
         >
           We believe that beauty begins at your fingertips. Our mission is to
           elevate your nail care experience to a whole new level. Whether you're
@@ -98,7 +99,7 @@ function Home() {
               style={{
                 ...smallParagraph,
                 paddingBottom: "100px",
-                fontFamily: "DM Sans, sans-serif",
+                fontFamily: "'DM Sans', serif",
               }}
             >
               We use only the highest quality nail products and polishes to
@@ -114,7 +115,7 @@ function Home() {
           <div style={{ padding: "20px" }}>
             <h3 style={pinkHeaderStyle}>Manicures</h3>
             <img src={lotus} alt="lotus" style={xsmImg} />
-            <p style={{ fontFamily: "DM Sans, sans-serif" }}>
+            <p style={{ fontFamily: "'DM Sans', sans-serif" }}>
               Treat your hands to a rejuvenating manicure that leaves your nails
               looking flawless. Choose from a variety of nail shapes, colors,
               and designs to express your unique style.
@@ -130,7 +131,7 @@ function Home() {
           <div style={{ padding: "20px" }}>
             <h3 style={pinkHeaderStyle}>Pedicures</h3>
             <img src={lotus} alt="lotus" style={xsmImg} />
-            <p style={{ fontFamily: "DM Sans, sans-serif" }}>
+            <p style={{ fontFamily: "'DM Sans', sans-serif" }}>
               Pamper your feet with a relaxing pedicure that includes
               exfoliation, nail shaping, and the perfect polish. Feel refreshed
               from heel to toe.
@@ -144,7 +145,7 @@ function Home() {
           <div style={{ padding: "20px" }}>
             <h3 style={pinkHeaderStyle}>Nail Art</h3>
             <img src={lotus} alt="lotus" style={xsmImg} />
-            <p style={{ fontFamily: "DM Sans, sans-serif" }}>
+            <p style={{ fontFamily: "'DM Sans', sans-serif" }}>
               Elevate your nail game with our creative nail art services. From
               elegant and understated designs to bold and extravagant
               masterpieces, our artists can make your nails stand out.
@@ -159,7 +160,7 @@ function Home() {
       </div>
       <section style={{ ...containerStyle, ...border }}>
         <h2 style={headerText}>Book Your Nail Experience Today</h2>
-        <p style={{ fontFamily: "DM Sans, sans-serif" }}>
+        <div style={{ fontFamily: "'DM Sans', sans-serif" }}>
           Ready to experience the ultimate in nail care? Booking with us is
           simple and convenient. Just sign up or log in and choose your
           preferred service, select a date and time that works for you, and
@@ -173,7 +174,7 @@ function Home() {
               style={{ maxWidth: "50px" }}
             />
           </p>
-        </p>
+        </div>
       </section>
     </div>
   );
